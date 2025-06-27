@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nigam Group Youth Association - Empowering Lives</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font - Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-gray-900 text-gray-100;
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom styling for input focus to match theme */
+        .form-control:focus {
+            @apply ring-2 ring-blue-500 border-blue-500;
+        }
+
+        /* Padding for fixed header */
+        body {
+            padding-top: 64px; /* Adjust based on navbar height */
+        }
+
+        /* Custom button hover effect */
+        .btn-primary-custom {
+            @apply bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out;
+        }
+        .btn-primary-custom:hover {
+            @apply bg-blue-700 transform -translate-y-1;
+        }
+
+        .btn-secondary-custom {
+            @apply bg-transparent border-2 border-blue-600 text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out;
+        }
+        .btn-secondary-custom:hover {
+            @apply bg-blue-600 text-white transform -translate-y-1;
+        }
+
+        /* Specific styles for card backgrounds */
+        .card-bg-dark {
+            @apply bg-gray-800;
+        }
+    </style>
+    <!-- Font Awesome for Icons (for external services/social media) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full bg-gray-900 shadow-lg z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo/Brand Name -->
+            <a href="#hero" class="text-2xl font-bold text-white tracking-wide flex items-center">
+                <img src="https://placehold.co/40x40/2563EB/ffffff?text=NGYA" alt="NGYA Logo" class="rounded-full mr-2">
+                Nigam Group Youth Association
+            </a>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-100 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#hero" class="text-gray-300 hover:text-blue-500 transition duration-300">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-blue-500 transition duration-300">About Us</a>
+                <a href="#services" class="text-gray-300 hover:text-blue-500 transition duration-300">Our Services</a>
+                <a href="#contact" class="text-gray-300 hover:text-blue-500 transition duration-300">Contact</a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Collapsed by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 py-4">
+            <a href="#hero" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Home</a>
+            <a href="#about" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">About Us</a>
+            <a href="#services" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Our Services</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative bg-gradient-to-r from-blue-700 to-blue-900 text-white py-20 md:py-32 overflow-hidden min-h-screen flex items-center justify-center">
+        <div class="absolute inset-0 opacity-10">
+            <!-- Background pattern for visual interest -->
+            <svg class="h-full w-full" fill="none" viewBox="0 0 100 100">
+                <pattern id="pattern-circles" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.1)"></circle>
+                </pattern>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)"></rect>
+            </svg>
+        </div>
+        <div class="container mx-auto px-4 text-center z-10 relative">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                Empowering Lives, Building Futures
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up delay-100">
+                Nigam Group Youth Association: Your Partner in Sustainable Growth.
+            </p>
+            <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-80 animate-fade-in-up delay-200">
+                We provide accessible, low-interest micro-loans to underprivileged individuals and budding entrepreneurs, fostering self-reliance and community prosperity.
+            </p>
+            <div class="space-x-4 flex justify-center flex-wrap gap-4 animate-fade-in-up delay-300">
+                <a href="#services" class="btn-primary-custom">
+                    Learn More <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#contact" class="btn-secondary-custom">
+                    Apply for Loan <i class="fas fa-hand-holding-dollar ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 md:py-24 bg-gray-900 text-gray-100">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-500 mb-6 text-center md:text-left">About Nigam Group Youth Association</h2>
+                <p class="text-lg leading-relaxed mb-6">
+                    Founded with a vision to uplift communities, Nigam Group Youth Association is dedicated to supporting individuals and small businesses by providing crucial financial assistance. We believe in fostering economic independence and sustainable development through accessible and equitable loan programs.
+                </p>
+                <p class="text-lg leading-relaxed mb-6">
+                    Our commitment extends beyond just financial aid; we aim to empower our beneficiaries with the resources and confidence needed to thrive. We work closely with local communities to identify needs and tailor our support for maximum impact.
+                </p>
+                <ul class="list-disc list-inside text-lg space-y-2">
+                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Mission-driven approach to community development</li>
+                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Transparent and fair lending practices</li>
+                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Dedicated to fostering self-reliance</li>
+                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Committed to long-term impact</li>
+                </ul>
+            </div>
+            <div class="md:w-1/2 flex justify-center items-center">
+                <img src="https://placehold.co/500x350/1f2937/d1d5db?text=Community+Support" alt="Community Support Image" class="rounded-lg shadow-xl border-4 border-blue-600">
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section (Loan Programs) -->
+    <section id="services" class="py-16 md:py-24 bg-gray-800 text-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-500 mb-12">Our Loan Programs: Fueling Dreams with Dignity</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Loan Type 1: Business Start-up Loans -->
+                <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-blue-500 mb-4 text-5xl text-center"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 text-center">Business Start-up Loans</h3>
+                    <p class="text-lg mb-4 text-gray-300">
+                        Designed for aspiring entrepreneurs who need initial capital to launch their small businesses. We offer flexible terms and guidance to help your venture succeed.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 text-base space-y-1">
+                        <li>Minimal interest rates</li>
+                        <li>Flexible repayment schedules</li>
+                        <li>Support for micro-enterprises</li>
+                    </ul>
+                </div>
+
+                <!-- Loan Type 2: Skill Development Loans -->
+                <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-blue-500 mb-4 text-5xl text-center"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 text-center">Skill Development Loans</h3>
+                    <p class="text-lg mb-4 text-gray-300">
+                        Empowering individuals to acquire new skills or vocational training, leading to better employment opportunities and improved livelihoods.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 text-base space-y-1">
+                        <li>Covers course fees and materials</li>
+                        <li>Focus on marketable skills</li>
+                        <li>Pathways to employment</li>
+                    </ul>
+                </div>
+
+                <!-- Loan Type 3: Essential Needs Loans -->
+                <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-blue-500 mb-4 text-5xl text-center"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3 class="text-2xl font-semibold text-white mb-4 text-center">Essential Needs Loans</h3>
+                    <p class="text-lg mb-4 text-gray-300">
+                        For families and individuals facing immediate financial challenges for essential needs like healthcare, education, or home repairs.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 text-base space-y-1">
+                        <li>Quick processing for emergencies</li>
+                        <li>Supports basic necessities</li>
+                        <li>Relief during difficult times</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-xl mb-6 text-gray-300 max-w-3xl mx-auto">
+                    Our application process is designed to be simple and supportive. We review each application carefully to ensure our resources make the most significant difference.
+                </p>
+                <a href="#contact" class="btn-primary-custom inline-flex items-center">
+                    Begin Your Application <i class="fas fa-file-invoice ml-3"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section (Optional, if you want a prominent CTA) -->
+    <section class="py-16 md:py-24 bg-blue-600 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Join Us in Making a Difference</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+                Whether you're seeking support or looking to contribute, Nigam Group Youth Association offers pathways to create lasting positive change in our communities.
+            </p>
+            <div class="space-x-4 flex justify-center flex-wrap gap-4">
+                <a href="#contact" class="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    Apply for a Loan <i class="fas fa-hand-holding-dollar ml-2"></i>
+                </a>
+                <a href="#" class="bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    Donate & Support <i class="fas fa-heart ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-gray-900 text-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-500 mb-12">Get in Touch</h2>
+            <div class="flex flex-col lg:flex-row items-start gap-12">
+                <div class="lg:w-1/2 w-full card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
+                    <h3 class="text-2xl font-semibold text-white mb-6">Send Us a Message</h3>
+                    <!--
+                        IMPORTANT: For a real website, you CANNOT send email directly from HTML/CSS/JS.
+                        You need a backend service (e.g., PHP script, Node.js API) or a third-party form service
+                        like Formspree.io, Netlify Forms, or EmailJS.
+                        For this demo, the action is set to a placeholder.
+                        Replace "YOUR_FORMSPREE_ENDPOINT" with your actual endpoint
+                        if you use a service like Formspree.
+                    -->
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-lg font-medium text-gray-300 mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Your Name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="your.email@example.com" required>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-lg font-medium text-gray-300 mb-2">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Inquiry about loans..." required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg font-medium text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary-custom w-full">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
+                    </form>
+                </div>
+
+                <div class="lg:w-1/2 w-full space-y-8">
+                    <!-- Contact Information -->
+                    <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
+                        <h3 class="text-2xl font-semibold text-white mb-6">Contact Information</h3>
+                        <p class="text-lg mb-4 flex items-center text-gray-300">
+                            <i class="fas fa-envelope text-blue-500 mr-3 text-xl"></i> Email: <a href="mailto:info@nigamgroupyouth.org" class="text-blue-400 hover:underline ml-2">info@nigamgroupyouth.org</a>
+                        </p>
+                        <p class="text-lg mb-4 flex items-center text-gray-300">
+                            <i class="fas fa-phone-alt text-blue-500 mr-3 text-xl"></i> Phone: <a href="tel:+911234567890" class="text-blue-400 hover:underline ml-2">+91 12345 67890</a>
+                        </p>
+                        <p class="text-lg mb-4 flex items-start text-gray-300">
+                            <i class="fas fa-map-marker-alt text-blue-500 mr-3 text-xl mt-1"></i> Address: 123 Youth Empowerment Road, Kolkata, West Bengal, India - 700001
+                        </p>
+                    </div>
+
+                    <!-- Follow Us / Social Media -->
+                    <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
+                        <h3 class="text-2xl font-semibold text-white mb-6">Follow Us</h3>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300 text-3xl" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300 text-3xl" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300 text-3xl" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300 text-3xl" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-8">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>&copy; <span id="current-year"></span> Nigam Group Youth Association. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#about" class="hover:text-blue-500 transition duration-300">About</a>
+                <a href="#services" class="hover:text-blue-500 transition duration-300">Services</a>
+                <a href="#contact" class="hover:text-blue-500 transition duration-300">Contact</a>
+                <a href="#" class="hover:text-blue-500 transition duration-300">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle and Current Year -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close mobile menu when a link is clicked
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // Set Current Year in Footer
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>
