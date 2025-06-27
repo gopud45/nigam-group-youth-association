@@ -48,6 +48,29 @@
         .card-bg-dark {
             @apply bg-gray-800;
         }
+
+        /* Tailwind custom colors for logo theme */
+        :root {
+            --color-nigam-gold: #FFC72C; /* Approx. gold/yellow from logo */
+            --color-nigam-blue: #2563EB; /* Matching the blue in the logo */
+        }
+
+        .text-nigam-gold { color: var(--color-nigam-gold); }
+        .border-nigam-gold { border-color: var(--color-nigam-gold); }
+        .bg-nigam-gold { background-color: var(--color-nigam-gold); }
+        .hover\:text-nigam-gold:hover { color: var(--color-nigam-gold); }
+        .hover\:bg-nigam-gold:hover { background-color: var(--color-nigam-gold); }
+
+        .text-nigam-blue { color: var(--color-nigam-blue); }
+        .bg-nigam-blue { background-color: var(--color-nigam-blue); }
+        .border-nigam-blue { border-color: var(--color-nigam-blue); }
+        .hover\:text-nigam-blue:hover { color: var(--color-nigam-blue); }
+        .hover\:bg-nigam-blue:hover { background-color: var(--color-nigam-blue); }
+
+        /* Ensure gradients use the specified blue shades */
+        .bg-gradient-to-r.from-blue-700.to-blue-900 {
+            background-image: linear-gradient(to right, #1D4ED8, #1E3A8A); /* Tailwind blue-700 to blue-900 */
+        }
     </style>
     <!-- Font Awesome for Icons (for external services/social media) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -59,8 +82,8 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <!-- Logo/Brand Name -->
             <a href="#hero" class="text-2xl font-bold text-white tracking-wide flex items-center">
-                <img src="https://placehold.co/40x40/2563EB/ffffff?text=NGYA" alt="NGYA Logo" class="rounded-full mr-2">
-                Nigam Group Youth Association
+                <img src="logo.jpg" alt="NGYA Logo" class="rounded-full mr-2 w-10 h-10 object-cover">
+                <span class="text-nigam-gold">Nigam</span> <span class="text-white ml-1">Group Youth Association</span>
             </a>
 
             <!-- Mobile Menu Button (Hamburger) -->
@@ -72,10 +95,10 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-6">
-                <a href="#hero" class="text-gray-300 hover:text-blue-500 transition duration-300">Home</a>
-                <a href="#about" class="text-gray-300 hover:text-blue-500 transition duration-300">About Us</a>
-                <a href="#services" class="text-gray-300 hover:text-blue-500 transition duration-300">Our Services</a>
-                <a href="#contact" class="text-gray-300 hover:text-blue-500 transition duration-300">Contact</a>
+                <a href="#hero" class="text-gray-300 hover:text-nigam-blue transition duration-300">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-nigam-blue transition duration-300">About Us</a>
+                <a href="#services" class="text-gray-300 hover:text-nigam-blue transition duration-300">Our Services</a>
+                <a href="#contact" class="text-gray-300 hover:text-nigam-blue transition duration-300">Contact</a>
             </div>
         </div>
 
@@ -124,7 +147,7 @@
     <section id="about" class="py-16 md:py-24 bg-gray-900 text-gray-100">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2">
-                <h2 class="text-3xl md:text-4xl font-bold text-blue-500 mb-6 text-center md:text-left">About Nigam Group Youth Association</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-nigam-blue mb-6 text-center md:text-left">About Nigam Group Youth Association</h2>
                 <p class="text-lg leading-relaxed mb-6">
                     Founded with a vision to uplift communities, Nigam Group Youth Association is dedicated to supporting individuals and small businesses by providing crucial financial assistance. We believe in fostering economic independence and sustainable development through accessible and equitable loan programs.
                 </p>
@@ -132,14 +155,14 @@
                     Our commitment extends beyond just financial aid; we aim to empower our beneficiaries with the resources and confidence needed to thrive. We work closely with local communities to identify needs and tailor our support for maximum impact.
                 </p>
                 <ul class="list-disc list-inside text-lg space-y-2">
-                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Mission-driven approach to community development</li>
-                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Transparent and fair lending practices</li>
-                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Dedicated to fostering self-reliance</li>
-                    <li><i class="fas fa-check-circle text-blue-500 mr-2"></i>Committed to long-term impact</li>
+                    <li><i class="fas fa-check-circle text-nigam-blue mr-2"></i>Mission-driven approach to community development</li>
+                    <li><i class="fas fa-check-circle text-nigam-blue mr-2"></i>Transparent and fair lending practices</li>
+                    <li><i class="fas fa-check-circle text-nigam-blue mr-2"></i>Dedicated to fostering self-reliance</li>
+                    <li><i class="fas fa-check-circle text-nigam-blue mr-2"></i>Committed to long-term impact</li>
                 </ul>
             </div>
             <div class="md:w-1/2 flex justify-center items-center">
-                <img src="https://placehold.co/500x350/1f2937/d1d5db?text=Community+Support" alt="Community Support Image" class="rounded-lg shadow-xl border-4 border-blue-600">
+                <img src="https://placehold.co/500x350/1f2937/d1d5db?text=Community+Support" alt="Community Support Image" class="rounded-lg shadow-xl border-4 border-nigam-blue">
             </div>
         </div>
     </section>
@@ -147,11 +170,11 @@
     <!-- Our Services Section (Loan Programs) -->
     <section id="services" class="py-16 md:py-24 bg-gray-800 text-gray-100">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-500 mb-12">Our Loan Programs: Fueling Dreams with Dignity</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-nigam-blue mb-12">Our Loan Programs: Fueling Dreams with Dignity</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Loan Type 1: Business Start-up Loans -->
                 <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
-                    <div class="text-blue-500 mb-4 text-5xl text-center"><i class="fas fa-lightbulb"></i></div>
+                    <div class="text-nigam-blue mb-4 text-5xl text-center"><i class="fas fa-lightbulb"></i></div>
                     <h3 class="text-2xl font-semibold text-white mb-4 text-center">Business Start-up Loans</h3>
                     <p class="text-lg mb-4 text-gray-300">
                         Designed for aspiring entrepreneurs who need initial capital to launch their small businesses. We offer flexible terms and guidance to help your venture succeed.
@@ -165,7 +188,7 @@
 
                 <!-- Loan Type 2: Skill Development Loans -->
                 <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
-                    <div class="text-blue-500 mb-4 text-5xl text-center"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="text-nigam-blue mb-4 text-5xl text-center"><i class="fas fa-graduation-cap"></i></div>
                     <h3 class="text-2xl font-semibold text-white mb-4 text-center">Skill Development Loans</h3>
                     <p class="text-lg mb-4 text-gray-300">
                         Empowering individuals to acquire new skills or vocational training, leading to better employment opportunities and improved livelihoods.
@@ -179,7 +202,7 @@
 
                 <!-- Loan Type 3: Essential Needs Loans -->
                 <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
-                    <div class="text-blue-500 mb-4 text-5xl text-center"><i class="fas fa-hand-holding-heart"></i></div>
+                    <div class="text-nigam-blue mb-4 text-5xl text-center"><i class="fas fa-hand-holding-heart"></i></div>
                     <h3 class="text-2xl font-semibold text-white mb-4 text-center">Essential Needs Loans</h3>
                     <p class="text-lg mb-4 text-gray-300">
                         For families and individuals facing immediate financial challenges for essential needs like healthcare, education, or home repairs.
@@ -204,17 +227,17 @@
     </section>
 
     <!-- Call to Action Section (Optional, if you want a prominent CTA) -->
-    <section class="py-16 md:py-24 bg-blue-600 text-white text-center">
+    <section class="py-16 md:py-24 bg-nigam-blue text-white text-center">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold mb-6">Join Us in Making a Difference</h2>
             <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
                 Whether you're seeking support or looking to contribute, Nigam Group Youth Association offers pathways to create lasting positive change in our communities.
             </p>
             <div class="space-x-4 flex justify-center flex-wrap gap-4">
-                <a href="#contact" class="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition duration-300 ease-in-out transform hover:-translate-y-1">
+                <a href="#contact" class="bg-white text-nigam-blue font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition duration-300 ease-in-out transform hover:-translate-y-1">
                     Apply for a Loan <i class="fas fa-hand-holding-dollar ml-2"></i>
                 </a>
-                <a href="#" class="bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-900 transition duration-300 ease-in-out transform hover:-translate-y-1">
+                <a href="#" class="bg-nigam-gold text-gray-900 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-yellow-400 transition duration-300 ease-in-out transform hover:-translate-y-1">
                     Donate & Support <i class="fas fa-heart ml-2"></i>
                 </a>
             </div>
@@ -224,7 +247,7 @@
     <!-- Contact Section -->
     <section id="contact" class="py-16 md:py-24 bg-gray-900 text-gray-100">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-500 mb-12">Get in Touch</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-nigam-blue text-center mb-12">Get in Touch</h2>
             <div class="flex flex-col lg:flex-row items-start gap-12">
                 <div class="lg:w-1/2 w-full card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
                     <h3 class="text-2xl font-semibold text-white mb-6">Send Us a Message</h3>
@@ -239,19 +262,19 @@
                     <form action="#" method="POST" class="space-y-6">
                         <div>
                             <label for="name" class="block text-lg font-medium text-gray-300 mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Your Name" required>
+                            <input type="text" id="name" name="name" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-nigam-blue focus:border-nigam-blue" placeholder="Your Name" required>
                         </div>
                         <div>
                             <label for="email" class="block text-lg font-medium text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="your.email@example.com" required>
+                            <input type="email" id="email" name="email" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-nigam-blue focus:border-nigam-blue" placeholder="your.email@example.com" required>
                         </div>
                         <div>
                             <label for="subject" class="block text-lg font-medium text-gray-300 mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Inquiry about loans..." required>
+                            <input type="text" id="subject" name="subject" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-nigam-blue focus:border-nigam-blue" placeholder="Inquiry about loans..." required>
                         </div>
                         <div>
                             <label for="message" class="block text-lg font-medium text-gray-300 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Your message here..." required></textarea>
+                            <textarea id="message" name="message" rows="5" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-nigam-blue focus:border-nigam-blue" placeholder="Your message here..." required></textarea>
                         </div>
                         <button type="submit" class="btn-primary-custom w-full">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
                     </form>
@@ -262,13 +285,13 @@
                     <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
                         <h3 class="text-2xl font-semibold text-white mb-6">Contact Information</h3>
                         <p class="text-lg mb-4 flex items-center text-gray-300">
-                            <i class="fas fa-envelope text-blue-500 mr-3 text-xl"></i> Email: <a href="mailto:info@nigamgroupyouth.org" class="text-blue-400 hover:underline ml-2">info@nigamgroupyouth.org</a>
+                            <i class="fas fa-envelope text-nigam-blue mr-3 text-xl"></i> Email: <a href="mailto:nigamgroupyouthassociation@gmail.com" class="text-blue-400 hover:underline ml-2">nigamgroupyouthassociation@gmail.com</a>
                         </p>
                         <p class="text-lg mb-4 flex items-center text-gray-300">
-                            <i class="fas fa-phone-alt text-blue-500 mr-3 text-xl"></i> Phone: <a href="tel:+911234567890" class="text-blue-400 hover:underline ml-2">+91 12345 67890</a>
+                            <i class="fas fa-phone-alt text-nigam-blue mr-3 text-xl"></i> Phone: <a href="tel:+911234567890" class="text-blue-400 hover:underline ml-2">+91 8906255286</a>
                         </p>
                         <p class="text-lg mb-4 flex items-start text-gray-300">
-                            <i class="fas fa-map-marker-alt text-blue-500 mr-3 text-xl mt-1"></i> Address: 123 Youth Empowerment Road, Kolkata, West Bengal, India - 700001
+                            <i class="fas fa-map-marker-alt text-nigam-blue mr-3 text-xl mt-1"></i> Address: Phansidewa, Darjeeling District, West Bengal, India
                         </p>
                     </div>
 
@@ -276,10 +299,10 @@
                     <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
                         <h3 class="text-2xl font-semibold text-white mb-6">Follow Us</h3>
                         <div class="flex space-x-6">
-                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300 text-3xl" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300 text-3xl" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300 text-3xl" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="text-blue-400 hover:text-blue-600 transition duration-300 text-3xl" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-nigam-blue hover:text-nigam-gold transition duration-300 text-3xl" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-nigam-blue hover:text-nigam-gold transition duration-300 text-3xl" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-nigam-blue hover:text-nigam-gold transition duration-300 text-3xl" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-nigam-blue hover:text-nigam-gold transition duration-300 text-3xl" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -292,10 +315,10 @@
         <div class="container mx-auto px-4 text-center text-sm">
             <p>&copy; <span id="current-year"></span> Nigam Group Youth Association. All rights reserved.</p>
             <div class="mt-4 space-x-4">
-                <a href="#about" class="hover:text-blue-500 transition duration-300">About</a>
-                <a href="#services" class="hover:text-blue-500 transition duration-300">Services</a>
-                <a href="#contact" class="hover:text-blue-500 transition duration-300">Contact</a>
-                <a href="#" class="hover:text-blue-500 transition duration-300">Privacy Policy</a>
+                <a href="#about" class="hover:text-nigam-blue transition duration-300">About</a>
+                <a href="#services" class="hover:text-nigam-blue transition duration-300">Services</a>
+                <a href="#contact" class="hover:text-nigam-blue transition duration-300">Contact</a>
+                <a href="#" class="hover:text-nigam-blue transition duration-300">Privacy Policy</a>
             </div>
         </div>
     </footer>
