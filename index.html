@@ -634,6 +634,61 @@
         }
 
         /* Responsive Adjustments */
+        /* Default styles are for mobile-first */
+
+        @media (max-width: 767px) { /* Adjustments for screens smaller than 768px (common tablet portrait / large phone) */
+            .hero-section {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+            .hero-title {
+                font-size: 2rem; /* Smaller title for very small screens */
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .hero-description {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+            .btn-primary-custom, .btn-secondary-custom {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            .hero-buttons {
+                flex-direction: column; /* Stack buttons vertically on small mobiles */
+                gap: 0.75rem;
+            }
+            .about-section .text-content,
+            .image-gallery-container,
+            .contact-form-container,
+            .contact-info-wrapper {
+                width: 100%; /* Ensure full width on small screens */
+            }
+            .section-title {
+                font-size: 1.75rem; /* Slightly smaller section titles on mobile */
+            }
+            .about-section p, .about-section ul,
+            .service-card p, .service-card ul,
+            .cta-section p,
+            .contact-form-group label, .contact-form-group input, .contact-form-group textarea,
+            .info-card p {
+                font-size: 1rem; /* Adjust text sizes for readability on smaller screens */
+            }
+            .service-card {
+                padding: 1.5rem; /* Reduce card padding */
+            }
+            .service-card .icon-large {
+                font-size: 2.5rem; /* Adjust icon size */
+            }
+            .service-card .card-title {
+                font-size: 1.3rem; /* Adjust card title size */
+            }
+            .social-icons a {
+                font-size: 1.5rem; /* Adjust social icon size */
+            }
+        }
+
         @media (min-width: 768px) { /* md breakpoint */
             .section-padding {
                 padding-top: 6rem; /* md:py-24 */
@@ -707,7 +762,7 @@
         <div class="container navbar-content">
             <!-- Logo/Brand Name -->
             <a href="#hero" class="navbar-brand">
-                <img src="logo.jpg" alt="NGYA Logo">
+                <img src="logo.bg.jpg" alt="NGYA Logo">
                 <span class="gold-text">Nigam</span> <span class="white-text">Group Youth Association</span>
             </a>
 
