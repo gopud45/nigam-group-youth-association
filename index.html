@@ -489,7 +489,7 @@
                 We provide accessible, low-interest micro-loans to underprivileged individuals and budding entrepreneurs, fostering self-reliance and community prosperity.
             </p>
             <div class="d-flex justify-content-center flex-wrap gap-3">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScXdtXzvj8xk0k3mPygp1SHezgbaaMGt7OlNhIlyoM_qda8LQ/viewform?usp=dialog" target="_blank" class="btn btn-primary-custom" title="ঋণের জন্য আবেদন করুন">
+                <a href="#about" class="btn btn-primary-custom" title="ঋণের জন্য আবেদন করুন">
                     Learn More <i class="fas fa-arrow-right ms-2"></i>
                 </a>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScXdtXzvj8xk0k3mPygp1SHezgbaaMGt7OlNhIlyoM_qda8LQ/viewform?usp=dialog" target="_blank" class="btn btn-secondary-custom" title="ঋণের জন্য আবেদন করুন">
@@ -547,9 +547,10 @@
                     <div class="text-center w-100 mt-4" style="max-width: 32rem;">
                         <h3 class="team-photo-title mb-3">Our Dedicated Team</h3>
                         <div class="team-photo-container">
-                            <img src="team.jpeg" alt="Nigam Group Youth Association Team Photo" class="img-fluid">
+                            <!-- Added title to the img tag for hover translation on the image -->
+                            <img src="team.jpeg" alt="Nigam Group Youth Association Team Photo" class="img-fluid" title="আমাদের লক্ষ্যের পেছনের মুখগুলি, ফাসিদেওয়া এবং তার বাইরে সেবা দিচ্ছে।">
                         </div>
-                        <p class="team-photo-caption mt-3" title="আমাদের লক্ষ্যের পেছনের মুখগুলি, ফাসিদেওয়া এবং তার বাইরে সেবা দিচ্ছে।">The faces behind our mission, serving Phansidewa and beyond.</p>
+                        <p class="team-photo-caption mt-3">The faces behind our mission, serving Phansidewa and beyond.</p>
                     </div>
                 </div>
             </div>
@@ -566,9 +567,11 @@
                     <div class="card-bg-dark h-100 p-4 text-center">
                         <div class="icon-large mb-3"><i class="fas fa-lightbulb"></i></div>
                         <h3 class="card-title h5 mb-3" title="ব্যবসা শুরু করার ঋণ">Business Start-up Loans</h3>
+                        <!-- Removed title from the p tag for description hover translation -->
                         <p class="mb-3">
                             Designed for aspiring entrepreneurs who need initial capital to launch their small businesses. We offer flexible terms and guidance to help your venture succeed.
                         </p>
+                        <!-- Removed title from the ul tag for list hover translation -->
                         <ul class="list-unstyled text-start small mb-0">
                             <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Minimal interest rates</li>
                             <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Flexible repayment schedules</li>
@@ -582,9 +585,11 @@
                     <div class="card-bg-dark h-100 p-4 text-center">
                         <div class="icon-large mb-3"><i class="fas fa-graduation-cap"></i></div>
                         <h3 class="card-title h5 mb-3" title="দক্ষতা উন্নয়ন ঋণ">Skill Development Loans</h3>
+                        <!-- Removed title from the p tag for description hover translation -->
                         <p class="mb-3">
                             Empowering individuals to acquire new skills or vocational training, leading to better employment opportunities and improved livelihoods.
                         </p>
+                        <!-- Removed title from the ul tag for list hover translation -->
                         <ul class="list-unstyled text-start small mb-0">
                             <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Covers course fees and materials</li>
                             <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Focus on marketable skills</li>
@@ -598,9 +603,11 @@
                     <div class="card-bg-dark h-100 p-4 text-center">
                         <div class="icon-large mb-3"><i class="fas fa-hand-holding-heart"></i></div>
                         <h3 class="card-title h5 mb-3" title="প্রয়োজনীয় চাহিদা ঋণ">Essential Needs Loans</h3>
+                        <!-- Removed title from the p tag for description hover translation -->
                         <p class="mb-3">
                             For families and individuals facing immediate financial challenges for essential needs like healthcare, education, or home repairs.
                         </p>
+                        <!-- Removed title from the ul tag for list hover translation -->
                         <ul class="list-unstyled text-start small mb-0">
                             <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Quick processing for emergencies</li>
                             <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Supports basic necessities</li>
@@ -614,9 +621,11 @@
                     <div class="card-bg-dark h-100 p-4 text-center">
                         <div class="icon-large mb-3"><i class="fas fa-hand-holding-medical"></i></div>
                         <h3 class="card-title h5 mb-3" title="চিকিৎসা ঋণ">Medical Loans</h3>
+                        <!-- Removed title from the p tag for description hover translation -->
                         <p class="mb-3">
                             Providing vital financial support to underprivileged Indian households for essential healthcare, ensuring access to medical treatment at minimal interest rates.
                         </p>
+                        <!-- Removed title from the ul tag for list hover translation -->
                         <ul class="list-unstyled text-start small mb-0">
                             <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Covers medical expenses</li>
                             <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Minimal interest rates</li>
@@ -675,23 +684,23 @@
                         <form id="contact-form" action="https://formspree.io/f/xeokvple" method="POST" class="contact-form">
                             <div class="mb-3">
                                 <label for="name" class="form-label fs-5">Name</label>
-                                <input type="text" id="name" name="name" class="form-control p-3 rounded-md" placeholder="Your Name" required>
+                                <input type="text" id="name" name="name" class="form-control p-3 rounded-md" placeholder="আপনার নাম" required>
                             </div>
                              <div class="mb-3">
                                 <label for="phone" class="form-label fs-5">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" class="form-control p-3 rounded-md" placeholder="+91 12345 67890" required>
+                                <input type="tel" id="phone" name="phone" class="form-control p-3 rounded-md" placeholder="ফোন নম্বর" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label fs-5">Email</label>
-                                <input type="email" id="email" name="_replyto" class="form-control p-3 rounded-md" placeholder="your.email@example.com" required>
+                                <input type="email" id="email" name="_replyto" class="form-control p-3 rounded-md" placeholder="আপনার ইমেল" required>
                             </div>
                             <div class="mb-3">
                                 <label for="subject" class="form-label fs-5">Subject</label>
-                                <input type="text" id="subject" name="_subject" class="form-control p-3 rounded-md" placeholder="Inquiry about loans..." required>
+                                <input type="text" id="subject" name="_subject" class="form-control p-3 rounded-md" placeholder="ঋণ সম্পর্কে জিজ্ঞাসা..." required>
                             </div>
                             <div class="mb-4">
                                 <label for="message" class="form-label fs-5">Message</label>
-                                <textarea id="message" name="message" rows="5" class="form-control p-3 rounded-md" placeholder="Your message here..." required></textarea>
+                                <textarea id="message" name="message" rows="5" class="form-control p-3 rounded-md" placeholder="আপনার বার্তা এখানে..." required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary-custom w-100">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
                         </form>
