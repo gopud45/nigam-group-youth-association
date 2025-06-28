@@ -361,6 +361,39 @@
         .bg-nigam-blue { background-color: var(--color-nigam-blue); }
         .border-nigam-blue { border-color: var(--color-nigam-blue); }
 
+        /* WhatsApp Sticky Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            background-color: #1DA851; /* Darker green */
+            transform: scale(1.1);
+        }
+        @media (max-width: 576px) { /* Adjust for smaller mobile screens */
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.7rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
     </style>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -373,7 +406,7 @@
             <!-- Logo/Brand Name -->
             <a class="navbar-brand d-flex align-items-center" href="#hero">
                 <img src="logo.bg.jpg" alt="NGYA Logo" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;">
-                <span class="gold-text fw-bold me-1">Nigam</span> <span class="white-text fw-bold"> Youth Association</span>
+                <span class="gold-text fw-bold me-1">Nigam</span> <span class="white-text fw-bold">Group Youth Association</span>
             </a>
 
             <!-- Mobile Menu Toggler -->
@@ -572,24 +605,30 @@
                 <div class="col-lg-6">
                     <div class="card-bg-dark p-4">
                         <h3 class="h4 fw-bold mb-4 text-white">Send Us a Message</h3>
-                        <!-- IMPORTANT: For a real website, you CANNOT send email directly from HTML/CSS/JS.
-                            You need a backend service (e.g., PHP script, Node.js API) or a third-party form service
-                            like Formspree.io, Netlify Forms, or EmailJS.
-                            For this demo, the action is set to a placeholder.
-                            Replace "YOUR_FORMSPREE_ENDPOINT" with your actual endpoint
-                            if you use a service like Formspree. -->
-                        <form action="#" method="POST" class="contact-form">
+                        <div id="form-messages" class="mb-3">
+                            <div id="form-success" class="alert alert-success d-none" role="alert">
+                                Thank you! Your message has been sent.
+                            </div>
+                            <div id="form-error" class="alert alert-danger d-none" role="alert">
+                                Oops! Something went wrong. Please try again later.
+                            </div>
+                        </div>
+                        <form id="contact-form" action="https://formspree.io/f/YOUR_UNIQUE_FORM_ID" method="POST" class="contact-form">
                             <div class="mb-3">
                                 <label for="name" class="form-label fs-5">Name</label>
                                 <input type="text" id="name" name="name" class="form-control p-3 rounded-md" placeholder="Your Name" required>
                             </div>
+                             <div class="mb-3">
+                                <label for="phone" class="form-label fs-5">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-control p-3 rounded-md" placeholder="+91 12345 67890" required>
+                            </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label fs-5">Email</label>
-                                <input type="email" id="email" name="email" class="form-control p-3 rounded-md" placeholder="your.email@example.com" required>
+                                <input type="email" id="email" name="_replyto" class="form-control p-3 rounded-md" placeholder="your.email@example.com" required>
                             </div>
                             <div class="mb-3">
                                 <label for="subject" class="form-label fs-5">Subject</label>
-                                <input type="text" id="subject" name="subject" class="form-control p-3 rounded-md" placeholder="Inquiry about loans..." required>
+                                <input type="text" id="subject" name="_subject" class="form-control p-3 rounded-md" placeholder="Inquiry about loans..." required>
                             </div>
                             <div class="mb-4">
                                 <label for="message" class="form-label fs-5">Message</label>
@@ -645,9 +684,14 @@
         </div>
     </footer>
 
+    <!-- WhatsApp Sticky Button -->
+    <a href="https://wa.me/YOUR_WHATSAPP_PHONE_NUMBER" class="whatsapp-button" target="_blank" aria-label="WhatsApp Us">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Bootstrap JavaScript Bundle (Popper included) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Custom JavaScript for Current Year -->
+    <!-- Custom JavaScript for Current Year and Form Submission -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Set Current Year in Footer
@@ -655,7 +699,47 @@
             if (currentYearSpan) {
                 currentYearSpan.textContent = new Date().getFullYear();
             }
-            // Bootstrap's JS handles navbar toggling, no custom code needed for that
+
+            // Handle Formspree Submission
+            const form = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+            const formError = document.getElementById('form-error');
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                // Hide any existing messages
+                formSuccess.classList.add('d-none');
+                formError.classList.add('d-none');
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: new FormData(form),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        formSuccess.classList.remove('d-none');
+                        form.reset(); // Clear the form fields
+                    } else {
+                        const data = await response.json();
+                        if (data.errors) {
+                            console.error('Formspree errors:', data.errors);
+                            formError.textContent = 'Oops! ' + data.errors.map(err => err.message).join(', ') + '. Please try again.';
+                        } else {
+                            formError.textContent = 'Oops! Something went wrong. Please try again later.';
+                        }
+                        formError.classList.remove('d-none');
+                    }
+                } catch (error) {
+                    console.error('Network or submission error:', error);
+                    formError.textContent = 'Oops! A network error occurred. Please check your internet connection and try again.';
+                    formError.classList.remove('d-none');
+                }
+            });
         });
     </script>
 </body>
