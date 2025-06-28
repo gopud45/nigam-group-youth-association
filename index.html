@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nigam Group Youth Association - Empowering Lives</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Custom CSS -->
     <style>
         /* Custom Font - Inter */
@@ -27,122 +29,58 @@
             background-color: var(--color-dark-background);
             color: var(--color-light-text);
             margin: 0;
-            padding: 0;
+            padding-top: 56px; /* Default Bootstrap fixed-top navbar height */
             overflow-x: hidden;
-            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-            padding-top: 64px; /* Adjust based on navbar height */
+            scroll-behavior: smooth;
         }
 
-        /* Container for Centering Content */
-        .container {
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1rem; /* px-4 equivalent */
-            padding-right: 1rem; /* px-4 equivalent */
+        /* General Section Padding */
+        .section-padding {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        @media (min-width: 768px) {
+            .section-padding {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
         }
 
-        /* Navigation Bar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--color-dark-background);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
-            z-index: 50;
-        }
-        .navbar-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem; /* py-4 */
-            padding-bottom: 1rem; /* py-4 */
-        }
-        .navbar-brand {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 700; /* font-bold */
-            color: var(--color-white);
-            letter-spacing: 0.05em; /* tracking-wide */
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        .navbar-brand img {
-            border-radius: 9999px; /* rounded-full */
-            margin-right: 0.5rem; /* mr-2 */
-            width: 2.5rem; /* w-10 */
-            height: 2.5rem; /* h-10 */
-            object-fit: cover;
+        /* Navbar Customization */
+        .navbar-dark {
+            background-color: var(--color-dark-background) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         .navbar-brand .gold-text {
             color: var(--color-nigam-gold);
         }
         .navbar-brand .white-text {
             color: var(--color-white);
-            margin-left: 0.25rem; /* ml-1 */
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: var(--color-muted-text);
+            transition: color 0.3s ease;
+        }
+        .navbar-dark .navbar-nav .nav-link:hover,
+        .navbar-dark .navbar-nav .nav-link.active {
+            color: var(--color-nigam-blue);
+        }
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23e2e8f0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
         }
 
-        /* Mobile Menu Button */
-        .mobile-menu-button {
-            display: block; /* md:hidden equivalent */
-            color: var(--color-light-text);
-            background: none;
-            border: none;
-            cursor: pointer;
-            outline: none;
-        }
-        .mobile-menu-button svg {
-            width: 1.5rem; /* w-6 */
-            height: 1.5rem; /* h-6 */
-        }
-
-        /* Desktop Menu */
-        .desktop-menu {
-            display: none; /* hidden md:flex */
-            gap: 1.5rem; /* space-x-6 */
-        }
-        .desktop-menu a {
-            color: var(--color-muted-text); /* text-gray-300 */
-            text-decoration: none;
-            transition: color 0.3s ease; /* transition duration-300 */
-        }
-        .desktop-menu a:hover {
-            color: var(--color-nigam-blue); /* hover:text-blue-500 */
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none; /* hidden md:hidden */
-            background-color: var(--color-dark-card); /* bg-gray-800 */
-            padding-top: 1rem; /* py-4 */
-            padding-bottom: 1rem; /* py-4 */
-        }
-        .mobile-menu a {
-            display: block;
-            padding: 0.5rem 1rem; /* px-4 py-2 */
-            color: var(--color-muted-text); /* text-gray-300 */
-            text-decoration: none;
-            transition: background-color 0.3s ease; /* transition duration-300 */
-        }
-        .mobile-menu a:hover {
-            background-color: var(--color-dark-background); /* hover:bg-gray-700 */
-        }
-        .mobile-menu.active {
-            display: block;
-        }
-
-        /* Hero Section */
+        /* Hero Section Customization */
         .hero-section {
-            position: relative;
-            background: linear-gradient(to right, #1D4ED8, #1E3A8A); /* bg-gradient-to-r from-blue-700 to-blue-900 */
+            background: linear-gradient(to right, #1D4ED8, #1E3A8A); /* Tailwind blue-700 to blue-900 */
             color: var(--color-white);
-            padding-top: 5rem; /* py-20 */
-            padding-bottom: 5rem; /* py-20 */
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             overflow: hidden;
         }
         .hero-section::before { /* Background pattern */
@@ -152,47 +90,21 @@
             opacity: 0.1;
             background-image: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
             background-size: 10px 10px;
+            z-index: 0;
         }
-        .hero-content {
+        .hero-section .container {
             position: relative;
-            z-index: 10;
-            text-align: center;
-        }
-        .hero-title {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 800; /* font-extrabold */
-            line-height: 1.25; /* leading-tight */
-            margin-bottom: 1.5rem; /* mb-6 */
-        }
-        .hero-subtitle {
-            font-size: 1.25rem; /* text-xl */
-            margin-bottom: 2rem; /* mb-8 */
-            opacity: 0.9;
-        }
-        .hero-description {
-            font-size: 1.125rem; /* text-lg */
-            margin-bottom: 2.5rem; /* mb-10 */
-            max-width: 48rem; /* max-w-3xl */
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.8;
-        }
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem; /* gap-4 */
-            margin-top: 1rem; /* Adjust as needed */
+            z-index: 1;
         }
 
-        /* Buttons */
+        /* Custom Buttons */
         .btn-primary-custom {
             background-color: var(--color-nigam-blue);
             color: var(--color-white);
-            font-weight: 600; /* font-semibold */
-            padding: 0.75rem 1.5rem; /* py-3 px-6 */
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease-in-out;
             text-decoration: none;
             display: inline-flex;
@@ -203,17 +115,17 @@
         }
         .btn-primary-custom:hover {
             background-color: #1D4ED8; /* Darker blue */
-            transform: translateY(-0.25rem); /* -translate-y-1 */
+            transform: translateY(-0.1rem);
         }
 
         .btn-secondary-custom {
             background-color: transparent;
             border: 2px solid var(--color-nigam-blue);
             color: var(--color-nigam-blue);
-            font-weight: 600; /* font-semibold */
-            padding: 0.75rem 1.5rem; /* py-3 px-6 */
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: all 0.3s ease-in-out;
             text-decoration: none;
             display: inline-flex;
@@ -224,83 +136,54 @@
         .btn-secondary-custom:hover {
             background-color: var(--color-nigam-blue);
             color: var(--color-white);
-            transform: translateY(-0.25rem); /* -translate-y-1 */
+            transform: translateY(-0.1rem);
         }
 
-        /* Section Styling */
-        .section-padding {
-            padding-top: 4rem; /* py-16 */
-            padding-bottom: 4rem; /* py-16 */
+        /* Section Titles */
+        .section-title {
+            font-size: 2.25rem; /* text-3xl */
+            font-weight: 700;
+            margin-bottom: 3rem; /* mb-12 */
+            color: var(--color-nigam-blue);
+        }
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2.5rem; /* md:text-4xl */
+            }
+        }
+
+        /* Card Backgrounds */
+        .card-bg-dark {
+            background-color: var(--color-dark-card);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #4A5568; /* border-gray-700 */
         }
 
         /* About Us Section */
-        .about-section .content-wrapper {
-            display: flex;
-            flex-direction: column; /* flex-col md:flex-row */
-            align-items: center;
-            gap: 3rem; /* gap-12 */
-        }
-        .about-section .text-content {
-            width: 100%; /* md:w-1/2 */
-        }
-        .about-section .section-title {
-            font-size: 1.875rem; /* text-3xl */
-            font-weight: 700; /* font-bold */
-            color: var(--color-nigam-blue);
-            margin-bottom: 1.5rem; /* mb-6 */
-            text-align: center;
-        }
-        .about-section p {
-            font-size: 1.125rem; /* text-lg */
-            line-height: 1.625; /* leading-relaxed */
-            margin-bottom: 1.5rem; /* mb-6 */
-        }
-        .about-section ul {
-            list-style: none; /* remove default list-disc */
-            padding: 0;
-            font-size: 1.125rem; /* text-lg */
-            margin-top: 1.5rem; /* space-y-2 */
-            margin-bottom: 1.5rem;
-        }
-        .about-section ul li {
+        .about-section .list-unstyled li {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 0.5rem; /* spacing between list items */
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
         }
-        .about-section ul li i {
+        .about-section .list-unstyled li i {
             color: var(--color-nigam-blue);
-            margin-right: 0.5rem; /* mr-2 */
-            font-size: 1.25rem; /* text-xl */
-            margin-top: 0.125rem; /* slight alignment adjustment */
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+            margin-top: 0.125rem;
         }
 
-        /* Image Gallery */
-        .image-gallery-container {
-            width: 100%; /* md:w-1/2 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem; /* space-y-8 */
-        }
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* grid-cols-2 */
-            gap: 1rem; /* gap-4 */
-            width: 100%;
-            max-width: 32rem; /* max-w-lg */
-            margin-left: auto;
-            margin-right: auto;
-        }
+        /* Image Gallery & Team Photo */
         .image-gallery-item {
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             border: 4px solid var(--color-nigam-blue);
             overflow: hidden;
             transform: scale(1);
             transition: transform 0.3s ease-in-out;
-            position: relative; /* For aspect ratio */
-            padding-bottom: 75%; /* 4:3 aspect ratio (3/4 * 100%) */
+            position: relative;
+            padding-bottom: 75%; /* 4:3 aspect ratio */
             height: 0;
         }
         .image-gallery-item:hover {
@@ -315,30 +198,15 @@
             object-fit: cover;
         }
 
-        /* Team Photo Styling */
-        .team-photo-wrapper {
-            width: 100%;
-            max-width: 32rem; /* max-w-lg */
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-            margin-top: 2rem; /* mt-8 */
-        }
-        .team-photo-wrapper .team-title {
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 700; /* font-bold */
-            color: var(--color-nigam-gold);
-            margin-bottom: 1rem; /* mb-4 */
-        }
         .team-photo-container {
-            border-radius: 0.5rem; /* rounded-lg */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             border: 4px solid var(--color-nigam-gold);
             overflow: hidden;
             transform: scale(1);
             transition: transform 0.3s ease-in-out;
-            position: relative; /* For aspect ratio */
-            padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 * 100%) */
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
         }
         .team-photo-container:hover {
@@ -352,103 +220,51 @@
             height: 100%;
             object-fit: cover;
         }
-        .team-photo-wrapper .team-caption {
-            font-size: 1.125rem; /* text-lg */
-            color: var(--color-muted-text); /* text-gray-400 */
-            margin-top: 1rem; /* mt-4 */
+        .team-photo-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-nigam-gold);
+        }
+        .team-photo-caption {
+            font-size: 1.125rem;
+            color: var(--color-muted-text);
         }
 
-        /* Our Services Section */
-        .services-section {
-            background-color: var(--color-dark-card); /* bg-gray-800 */
-            color: var(--color-light-text);
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr; /* grid-cols-1 */
-            gap: 2rem; /* gap-8 */
-        }
+
+        /* Service Cards */
         .service-card {
-            background-color: var(--color-dark-card); /* card-bg-dark */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 2rem; /* p-8 */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
-            border: 1px solid #4A5568; /* border-gray-700 */
-            transform: scale(1);
+            padding: 2rem;
             transition: transform 0.3s ease-in-out;
         }
         .service-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-0.1rem);
         }
         .service-card .icon-large {
             color: var(--color-nigam-blue);
-            margin-bottom: 1rem; /* mb-4 */
-            font-size: 3rem; /* text-5xl */
-            text-align: center;
+            font-size: 3rem;
         }
         .service-card .card-title {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
+            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--color-white);
-            margin-bottom: 1rem; /* mb-4 */
-            text-align: center;
         }
         .service-card p {
-            font-size: 1.125rem; /* text-lg */
-            margin-bottom: 1rem; /* mb-4 */
-            color: var(--color-muted-text); /* text-gray-300 */
+            font-size: 1.125rem;
+            color: var(--color-muted-text);
         }
         .service-card ul {
-            list-style: disc; /* list-disc */
-            list-style-position: inside; /* list-inside */
-            color: var(--color-muted-text); /* text-gray-400 */
-            font-size: 1rem; /* text-base */
-            margin-top: 0.25rem; /* space-y-1 */
-        }
-        .services-section .center-text {
-            text-align: center;
-            margin-top: 3rem; /* mt-12 */
-        }
-        .services-section .center-text p {
-            font-size: 1.25rem; /* text-xl */
-            margin-bottom: 1.5rem; /* mb-6 */
-            max-width: 48rem; /* max-w-3xl */
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .services-section .center-text a {
-            display: inline-flex;
-            align-items: center;
+            list-style: disc;
+            list-style-position: inside;
+            color: var(--color-muted-text);
+            font-size: 1rem;
         }
 
         /* Call to Action Section */
         .cta-section {
-            padding-top: 4rem; /* py-16 */
-            padding-bottom: 4rem; /* py-16 */
             background-color: var(--color-nigam-blue);
             color: var(--color-white);
-            text-align: center;
         }
-        .cta-section .section-title {
-            font-size: 1.875rem; /* text-3xl */
-            font-weight: 700; /* font-bold */
-            margin-bottom: 1.5rem; /* mb-6 */
-        }
-        .cta-section p {
-            font-size: 1.25rem; /* text-xl */
-            margin-bottom: 2rem; /* mb-8 */
-            max-width: 48rem; /* max-w-3xl */
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
-        }
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem; /* gap-4 */
-        }
-        .cta-buttons .btn-white {
+        .cta-section .btn-white-custom {
             background-color: var(--color-white);
             color: var(--color-nigam-blue);
             font-weight: 600;
@@ -463,13 +279,13 @@
             border: none;
             cursor: pointer;
         }
-        .cta-buttons .btn-white:hover {
-            background-color: #F7FAFC; /* hover:bg-gray-100 */
-            transform: translateY(-0.25rem);
+        .cta-section .btn-white-custom:hover {
+            background-color: #F7FAFC; /* Lighter white */
+            transform: translateY(-0.1rem);
         }
-        .cta-buttons .btn-support {
-            background-color: var(--color-nigam-gold); /* bg-nigam-gold */
-            color: var(--color-black); /* text-gray-900 */
+        .cta-section .btn-support-custom {
+            background-color: var(--color-nigam-gold);
+            color: var(--color-black);
             font-weight: 600;
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
@@ -482,274 +298,68 @@
             border: none;
             cursor: pointer;
         }
-        .cta-buttons .btn-support:hover {
-            background-color: #FFDE59; /* hover:bg-yellow-400 (lighter gold) */
-            transform: translateY(-0.25rem);
+        .cta-section .btn-support-custom:hover {
+            background-color: #FFDE59; /* Lighter gold */
+            transform: translateY(-0.1rem);
         }
 
         /* Contact Section */
-        .contact-section {
-            background-color: var(--color-dark-background);
-            color: var(--color-light-text);
-        }
-        .contact-content-wrapper {
-            display: flex;
-            flex-direction: column; /* flex-col lg:flex-row */
-            align-items: flex-start;
-            gap: 3rem; /* gap-12 */
-        }
-        .contact-form-container {
-            width: 100%; /* lg:w-1/2 */
-            background-color: var(--color-dark-card); /* card-bg-dark */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 2rem; /* p-8 */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
-            border: 1px solid #4A5568; /* border-gray-700 */
-        }
-        .contact-form-container .form-title {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            color: var(--color-white);
-            margin-bottom: 1.5rem; /* mb-6 */
-        }
-        .contact-form-group {
-            margin-bottom: 1.5rem; /* space-y-6 equivalent in children, but added as margin-bottom for parent div */
-        }
-        .contact-form-group label {
-            display: block;
-            font-size: 1.125rem; /* text-lg */
-            font-weight: 500; /* font-medium */
-            color: var(--color-muted-text); /* text-gray-300 */
-            margin-bottom: 0.5rem; /* mb-2 */
-        }
-        .contact-form-group input,
-        .contact-form-group textarea {
-            width: 100%;
-            padding: 0.75rem; /* p-3 */
-            border-radius: 0.375rem; /* rounded-md */
+        .contact-form .form-control {
             background-color: #4A5568; /* bg-gray-700 */
             color: var(--color-light-text);
             border: 1px solid #718096; /* border-gray-600 */
             outline: none;
             transition: all 0.2s ease-in-out;
         }
-        .contact-form-group input:focus,
-        .contact-form-group textarea:focus {
-            outline: none;
+        .contact-form .form-control:focus {
             border-color: var(--color-nigam-blue);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5); /* ring-2 ring-blue-500 */
+            box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25); /* Bootstrap's focus ring */
         }
-        .contact-form-group textarea {
-            min-height: 7.5rem; /* rows-5 equivalent */
-            resize: vertical;
+        .contact-info-card .lead {
+            color: var(--color-muted-text);
         }
-        .contact-form-container .submit-button {
-            width: 100%;
-            margin-top: 1.5rem; /* mt-6 or mt-3 depending on context */
-        }
-
-        .contact-info-wrapper {
-            width: 100%; /* lg:w-1/2 */
-            display: flex;
-            flex-direction: column;
-            gap: 2rem; /* space-y-8 */
-        }
-        .info-card {
-            background-color: var(--color-dark-card); /* card-bg-dark */
-            border-radius: 0.5rem; /* rounded-lg */
-            padding: 2rem; /* p-8 */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
-            border: 1px solid #4A5568; /* border-gray-700 */
-        }
-        .info-card .card-title {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            color: var(--color-white);
-            margin-bottom: 1.5rem; /* mb-6 */
-        }
-        .info-card p {
-            font-size: 1.125rem; /* text-lg */
-            margin-bottom: 1rem; /* mb-4 */
-            display: flex;
-            align-items: center;
-            color: var(--color-muted-text); /* text-gray-300 */
-        }
-        .info-card p:last-child {
-             margin-bottom: 0;
-        }
-        .info-card p i {
+        .contact-info-card .lead i {
             color: var(--color-nigam-blue);
-            margin-right: 0.75rem; /* mr-3 */
-            font-size: 1.25rem; /* text-xl */
+            margin-right: 0.75rem;
         }
-        .info-card p i.fa-map-marker-alt {
-            margin-top: 0.25rem; /* mt-1 */
-            align-self: flex-start;
-        }
-        .info-card p a {
-            color: #63B3ED; /* text-blue-400 */
+        .contact-info-card .lead a {
+            color: #63B3ED;
             text-decoration: none;
-            margin-left: 0.5rem; /* ml-2 */
         }
-        .info-card p a:hover {
+        .contact-info-card .lead a:hover {
             text-decoration: underline;
         }
-
-        /* Social Media Icons */
-        .social-icons {
-            display: flex;
-            gap: 1.5rem; /* space-x-6 */
+        .contact-info-card .social-icons a {
+            color: var(--color-nigam-blue);
+            transition: color 0.3s ease;
+            font-size: 1.875rem;
+            text-decoration: none;
         }
-        .social-icons a {
-            color: var(--color-nigam-blue); /* text-blue-400 */
-            transition: color 0.3s ease; /* transition duration-300 */
-            font-size: 1.875rem; /* text-3xl */
-        }
-        .social-icons a:hover {
-            color: var(--color-nigam-gold); /* hover:text-blue-600 */
+        .contact-info-card .social-icons a:hover {
+            color: var(--color-nigam-gold);
         }
 
         /* Footer */
         .footer {
-            background-color: var(--color-dark-card); /* bg-gray-800 */
-            color: var(--color-muted-text); /* text-gray-400 */
-            padding-top: 2rem; /* py-8 */
-            padding-bottom: 2rem; /* py-8 */
-            text-align: center;
-            font-size: 0.875rem; /* text-sm */
+            background-color: var(--color-dark-card);
+            color: var(--color-muted-text);
         }
-        .footer-links {
-            margin-top: 1rem; /* mt-4 */
-            display: flex;
-            justify-content: center;
-            gap: 1rem; /* space-x-4 */
-        }
-        .footer-links a {
-            color: inherit;
-            text-decoration: none;
+        .footer .nav-link {
+            color: var(--color-muted-text);
             transition: color 0.3s ease;
         }
-        .footer-links a:hover {
+        .footer .nav-link:hover {
             color: var(--color-nigam-blue);
         }
 
-        /* Responsive Adjustments */
-        /* Default styles are for mobile-first */
+        /* Utilities */
+        .text-nigam-gold { color: var(--color-nigam-gold); }
+        .border-nigam-gold { border-color: var(--color-nigam-gold); }
+        .bg-nigam-gold { background-color: var(--color-nigam-gold); }
 
-        @media (max-width: 767px) { /* Adjustments for screens smaller than 768px (common tablet portrait / large phone) */
-            .hero-section {
-                padding-top: 4rem;
-                padding-bottom: 4rem;
-            }
-            .hero-title {
-                font-size: 2rem; /* Smaller title for very small screens */
-            }
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            .hero-description {
-                font-size: 0.95rem;
-                margin-bottom: 1.5rem;
-            }
-            .btn-primary-custom, .btn-secondary-custom {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            .hero-buttons {
-                flex-direction: column; /* Stack buttons vertically on small mobiles */
-                gap: 0.75rem;
-            }
-            .about-section .text-content,
-            .image-gallery-container,
-            .contact-form-container,
-            .contact-info-wrapper {
-                width: 100%; /* Ensure full width on small screens */
-            }
-            .section-title {
-                font-size: 1.75rem; /* Slightly smaller section titles on mobile */
-            }
-            .about-section p, .about-section ul,
-            .service-card p, .service-card ul,
-            .cta-section p,
-            .contact-form-group label, .contact-form-group input, .contact-form-group textarea,
-            .info-card p {
-                font-size: 1rem; /* Adjust text sizes for readability on smaller screens */
-            }
-            .service-card {
-                padding: 1.5rem; /* Reduce card padding */
-            }
-            .service-card .icon-large {
-                font-size: 2.5rem; /* Adjust icon size */
-            }
-            .service-card .card-title {
-                font-size: 1.3rem; /* Adjust card title size */
-            }
-            .social-icons a {
-                font-size: 1.5rem; /* Adjust social icon size */
-            }
-        }
-
-        @media (min-width: 768px) { /* md breakpoint */
-            .section-padding {
-                padding-top: 6rem; /* md:py-24 */
-                padding-bottom: 6rem; /* md:py-24 */
-            }
-            .hero-title {
-                font-size: 3rem; /* md:text-6xl */
-            }
-            .hero-subtitle {
-                font-size: 1.5rem; /* md:text-2xl */
-            }
-            .hero-description {
-                font-size: 1.25rem; /* md:text-xl */
-            }
-            .navbar-content {
-                padding-top: 1.5rem; /* py-6 */
-                padding-bottom: 1.5rem; /* py-6 */
-            }
-            .mobile-menu-button {
-                display: none; /* md:hidden equivalent */
-            }
-            .desktop-menu {
-                display: flex; /* md:flex */
-            }
-            .about-section .content-wrapper {
-                flex-direction: row; /* md:flex-row */
-            }
-            .about-section .text-content {
-                width: 50%; /* md:w-1/2 */
-            }
-            .about-section .section-title {
-                text-align: left; /* md:text-left */
-            }
-            .image-gallery-container {
-                width: 50%; /* md:w-1/2 */
-            }
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
-            }
-            .cta-section .section-title {
-                font-size: 3rem; /* md:text-4xl */
-            }
-            .cta-section p {
-                font-size: 1.5rem; /* md:text-xl */
-            }
-            .contact-content-wrapper {
-                flex-direction: row; /* lg:flex-row */
-            }
-            .contact-form-container {
-                width: 50%; /* lg:w-1/2 */
-            }
-            .contact-info-wrapper {
-                width: 50%; /* lg:w-1/2 */
-            }
-        }
-
-        @media (min-width: 1024px) { /* lg breakpoint */
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
-            }
-        }
+        .text-nigam-blue { color: var(--color-nigam-blue); }
+        .bg-nigam-blue { background-color: var(--color-nigam-blue); }
+        .border-nigam-blue { border-color: var(--color-nigam-blue); }
 
     </style>
     <!-- Font Awesome for Icons -->
@@ -758,243 +368,263 @@
 <body class="antialiased">
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container navbar-content">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
             <!-- Logo/Brand Name -->
-            <a href="#hero" class="navbar-brand">
-                <img src="logo.bg.jpg" alt="NGYA Logo">
-                <span class="gold-text">Nigam</span> <span class="white-text">Group Youth Association</span>
+            <a class="navbar-brand d-flex align-items-center" href="#hero">
+                <img src="logo.bg.jpg" alt="NGYA Logo" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                <span class="gold-text fw-bold me-1">Nigam</span> <span class="white-text fw-bold">Group Youth Association</span>
             </a>
 
-            <!-- Mobile Menu Button (Hamburger) -->
-            <button id="mobile-menu-button" class="mobile-menu-button">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
+            <!-- Mobile Menu Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
 
             <!-- Desktop Menu -->
-            <div class="desktop-menu">
-                <a href="#hero">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#services">Our Services</a>
-                <a href="#contact">Contact</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
             </div>
-        </div>
-
-        <!-- Mobile Menu (Collapsed by default) -->
-        <div id="mobile-menu" class="mobile-menu">
-            <a href="#hero">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#services">Our Services</a>
-            <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <div class="container hero-content">
-            <h1 class="hero-title">
+    <section id="hero" class="hero-section text-center py-5 py-md-8">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">
                 Empowering Lives, Building Futures
             </h1>
-            <p class="hero-subtitle">
+            <p class="lead mb-4 opacity-90">
                 Nigam Group Youth Association: Your Partner in Sustainable Growth.
             </p>
-            <p class="hero-description">
+            <p class="fs-5 mb-5 mx-auto opacity-80" style="max-width: 48rem;">
                 We provide accessible, low-interest micro-loans to underprivileged individuals and budding entrepreneurs, fostering self-reliance and community prosperity.
             </p>
-            <div class="hero-buttons">
-                <a href="#services" class="btn-primary-custom">
-                    Learn More <i class="fas fa-arrow-right ml-2"></i>
+            <div class="d-flex justify-content-center flex-wrap gap-3">
+                <a href="#services" class="btn btn-primary-custom">
+                    Learn More <i class="fas fa-arrow-right ms-2"></i>
                 </a>
-                <a href="#contact" class="btn-secondary-custom">
-                    Apply for Loan <i class="fas fa-hand-holding-dollar ml-2"></i>
+                <a href="#contact" class="btn btn-secondary-custom">
+                    Apply for Loan <i class="fas fa-hand-holding-dollar ms-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- About Us Section -->
-    <section id="about" class="section-padding bg-gray-900 about-section">
-        <div class="container content-wrapper">
-            <div class="text-content">
-                <h2 class="section-title">About Nigam Group Youth Association</h2>
-                <p>
-                    Founded with a vision to uplift communities, Nigam Group Youth Association is dedicated to supporting individuals and small businesses by providing crucial financial assistance. We believe in fostering economic independence and sustainable development through accessible and equitable loan programs.
-                </p>
-                <p>
-                    Our commitment extends beyond just financial aid; we aim to empower our beneficiaries with the resources and confidence needed to thrive. We work closely with local communities in Phansidewa, Darjeeling District, West Bengal to identify needs and tailor our support for maximum impact.
-                </p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i>Mission-driven approach to community development</li>
-                    <li><i class="fas fa-check-circle"></i>Transparent and fair lending practices</li>
-                    <li><i class="fas fa-check-circle"></i>Dedicated to fostering self-reliance</li>
-                    <li><i class="fas fa-check-circle"></i>Committed to long-term impact</li>
-                </ul>
-            </div>
-            <!-- Community Support Images and Team Photo -->
-            <div class="image-gallery-container">
-                <!-- Image Gallery -->
-                <div class="image-grid">
-                    <div class="image-gallery-item">
-                        <img src="2.jpeg" alt="Community Event 1">
-                    </div>
-                    <div class="image-gallery-item">
-                        <img src="3.jpeg" alt="Loan Distribution">
-                    </div>
-                    <div class="image-gallery-item">
-                        <img src="4.jpeg" alt="Training Session">
-                    </div>
-                    <div class="image-gallery-item">
-                        <img src="1.jpeg" alt="Beneficiary Success">
-                    </div>
+    <section id="about" class="section-padding bg-gray-900">
+        <div class="container">
+            <div class="row align-items-center justify-content-center g-5">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h2 class="section-title text-center text-lg-start">About Nigam Group Youth Association</h2>
+                    <p class="fs-5 lh-base mb-4">
+                        Founded with a vision to uplift communities, Nigam Group Youth Association is dedicated to supporting individuals and small businesses by providing crucial financial assistance. We believe in fostering economic independence and sustainable development through accessible and equitable loan programs.
+                    </p>
+                    <p class="fs-5 lh-base mb-4">
+                        Our commitment extends beyond just financial aid; we aim to empower our beneficiaries with the resources and confidence needed to thrive. We work closely with local communities in Phansidewa, Darjeeling District, West Bengal to identify needs and tailor our support for maximum impact.
+                    </p>
+                    <ul class="list-unstyled fs-5 mb-0">
+                        <li class="mb-2"><i class="fas fa-check-circle"></i>Mission-driven approach to community development</li>
+                        <li class="mb-2"><i class="fas fa-check-circle"></i>Transparent and fair lending practices</li>
+                        <li class="mb-2"><i class="fas fa-check-circle"></i>Dedicated to fostering self-reliance</li>
+                        <li class="mb-2"><i class="fas fa-check-circle"></i>Committed to long-term impact</li>
+                    </ul>
                 </div>
-                <!-- Team Photo -->
-                <div class="team-photo-wrapper">
-                    <h3 class="team-title">Our Dedicated Team</h3>
-                    <div class="team-photo-container">
-                        <img src="team.jpeg" alt="Nigam Group Youth Association Team Photo">
+                <!-- Community Support Images and Team Photo -->
+                <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center">
+                    <!-- Image Gallery -->
+                    <div class="row g-3 w-100 mb-4" style="max-width: 32rem;">
+                        <div class="col-6">
+                            <div class="image-gallery-item">
+                                <img src="2.jpeg" alt="Community Event 1" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="image-gallery-item">
+                                <img src="3.jpeg" alt="Loan Distribution" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="image-gallery-item">
+                                <img src="4.jpeg" alt="Training Session" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="image-gallery-item">
+                                <img src="1.jpeg" alt="Beneficiary Success" class="img-fluid">
+                            </div>
+                        </div>
                     </div>
-                    <p class="team-caption">The faces behind our mission, serving Phansidewa and beyond.</p>
+                    <!-- Team Photo -->
+                    <div class="text-center w-100 mt-4" style="max-width: 32rem;">
+                        <h3 class="team-photo-title mb-3">Our Dedicated Team</h3>
+                        <div class="team-photo-container">
+                            <img src="team.jpeg" alt="Nigam Group Youth Association Team Photo" class="img-fluid">
+                        </div>
+                        <p class="team-photo-caption mt-3">The faces behind our mission, serving Phansidewa and beyond.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Our Services Section (Loan Programs) -->
-    <section id="services" class="section-padding services-section">
+    <section id="services" class="section-padding bg-dark-card">
         <div class="container">
-            <h2 class="section-title text-center" style="color: var(--color-nigam-blue);">Our Loan Programs: Fueling Dreams with Dignity</h2>
-            <div class="services-grid">
+            <h2 class="section-title text-center">Our Loan Programs: Fueling Dreams with Dignity</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- Loan Type 1: Business Start-up Loans -->
-                <div class="service-card">
-                    <div class="icon-large"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="card-title">Business Start-up Loans</h3>
-                    <p>
-                        Designed for aspiring entrepreneurs who need initial capital to launch their small businesses. We offer flexible terms and guidance to help your venture succeed.
-                    </p>
-                    <ul>
-                        <li>Minimal interest rates</li>
-                        <li>Flexible repayment schedules</li>
-                        <li>Support for micro-enterprises</li>
-                    </ul>
+                <div class="col">
+                    <div class="card-bg-dark h-100 p-4 text-center">
+                        <div class="icon-large mb-3"><i class="fas fa-lightbulb"></i></div>
+                        <h3 class="card-title h5 mb-3">Business Start-up Loans</h3>
+                        <p class="mb-3">
+                            Designed for aspiring entrepreneurs who need initial capital to launch their small businesses. We offer flexible terms and guidance to help your venture succeed.
+                        </p>
+                        <ul class="list-unstyled text-start small mb-0">
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Minimal interest rates</li>
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Flexible repayment schedules</li>
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Support for micro-enterprises</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Loan Type 2: Skill Development Loans -->
-                <div class="service-card">
-                    <div class="icon-large"><i class="fas fa-graduation-cap"></i></div>
-                    <h3 class="card-title">Skill Development Loans</h3>
-                    <p>
-                        Empowering individuals to acquire new skills or vocational training, leading to better employment opportunities and improved livelihoods.
-                    </p>
-                    <ul>
-                        <li>Covers course fees and materials</li>
-                        <li>Focus on marketable skills</li>
-                        <li>Pathways to employment</li>
-                    </ul>
+                <div class="col">
+                    <div class="card-bg-dark h-100 p-4 text-center">
+                        <div class="icon-large mb-3"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="card-title h5 mb-3">Skill Development Loans</h3>
+                        <p class="mb-3">
+                            Empowering individuals to acquire new skills or vocational training, leading to better employment opportunities and improved livelihoods.
+                        </p>
+                        <ul class="list-unstyled text-start small mb-0">
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Covers course fees and materials</li>
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Focus on marketable skills</li>
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Pathways to employment</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Loan Type 3: Essential Needs Loans -->
-                <div class="service-card">
-                    <div class="icon-large"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3 class="card-title">Essential Needs Loans</h3>
-                    <p>
-                        For families and individuals facing immediate financial challenges for essential needs like healthcare, education, or home repairs.
-                    </p>
-                    <ul>
-                        <li>Quick processing for emergencies</li>
-                        <li>Supports basic necessities</li>
-                        <li>Relief during difficult times</li>
-                    </ul>
+                <div class="col">
+                    <div class="card-bg-dark h-100 p-4 text-center">
+                        <div class="icon-large mb-3"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3 class="card-title h5 mb-3">Essential Needs Loans</h3>
+                        <p class="mb-3">
+                            For families and individuals facing immediate financial challenges for essential needs like healthcare, education, or home repairs.
+                        </p>
+                        <ul class="list-unstyled text-start small mb-0">
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Quick processing for emergencies</li>
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Supports basic necessities</li>
+                            <li><i class="fas fa-check-circle text-nigam-blue me-2"></i>Relief during difficult times</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="center-text">
-                <p>
+            <div class="text-center mt-5">
+                <p class="lead mb-4 mx-auto" style="max-width: 48rem;">
                     Our application process is designed to be simple and supportive. We review each application carefully to ensure our resources make the most significant difference.
                 </p>
-                <a href="#contact" class="btn-primary-custom">
-                    Begin Your Application <i class="fas fa-file-invoice ml-2"></i>
+                <a href="#contact" class="btn btn-primary-custom">
+                    Begin Your Application <i class="fas fa-file-invoice ms-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Call to Action Section -->
-    <section class="section-padding cta-section" style="background-color: var(--color-nigam-blue);">
+    <section class="section-padding cta-section text-center">
         <div class="container">
-            <h2 class="section-title">Join Us in Making a Difference</h2>
-            <p>
+            <h2 class="h3 fw-bold mb-4">Join Us in Making a Difference</h2>
+            <p class="lead mb-5 mx-auto opacity-90" style="max-width: 48rem;">
                 Whether you're seeking support or looking to contribute, Nigam Group Youth Association offers pathways to create lasting positive change in our communities.
             </p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn-white">
-                    Apply for a Loan <i class="fas fa-hand-holding-dollar ml-2"></i>
+            <div class="d-flex justify-content-center flex-wrap gap-3">
+                <a href="#contact" class="btn btn-white-custom">
+                    Apply for a Loan <i class="fas fa-hand-holding-dollar ms-2"></i>
                 </a>
-                <a href="#" class="btn-support">
-                    Donate & Support <i class="fas fa-heart ml-2"></i>
+                <a href="#" class="btn btn-support-custom">
+                    Donate & Support <i class="fas fa-heart ms-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section-padding contact-section">
+    <section id="contact" class="section-padding bg-dark-background">
         <div class="container">
-            <h2 class="section-title text-center" style="color: var(--color-nigam-blue);">Get in Touch</h2>
-            <div class="contact-content-wrapper">
-                <div class="contact-form-container">
-                    <h3 class="form-title">Send Us a Message</h3>
-                    <!-- IMPORTANT: For a real website, you CANNOT send email directly from HTML/CSS/JS.
-                        You need a backend service (e.g., PHP script, Node.js API) or a third-party form service
-                        like Formspree.io, Netlify Forms, or EmailJS.
-                        For this demo, the action is set to a placeholder.
-                        Replace "YOUR_FORMSPREE_ENDPOINT" with your actual endpoint
-                        if you use a service like Formspree. -->
-                    <form action="#" method="POST">
-                        <div class="contact-form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="contact-form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                        </div>
-                        <div class="contact-form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Inquiry about loans..." required>
-                        </div>
-                        <div class="contact-form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary-custom submit-button">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
-                    </form>
+            <h2 class="section-title text-center">Get in Touch</h2>
+            <div class="row justify-content-center g-5">
+                <div class="col-lg-6">
+                    <div class="card-bg-dark p-4">
+                        <h3 class="h4 fw-bold mb-4 text-white">Send Us a Message</h3>
+                        <!-- IMPORTANT: For a real website, you CANNOT send email directly from HTML/CSS/JS.
+                            You need a backend service (e.g., PHP script, Node.js API) or a third-party form service
+                            like Formspree.io, Netlify Forms, or EmailJS.
+                            For this demo, the action is set to a placeholder.
+                            Replace "YOUR_FORMSPREE_ENDPOINT" with your actual endpoint
+                            if you use a service like Formspree. -->
+                        <form action="#" method="POST" class="contact-form">
+                            <div class="mb-3">
+                                <label for="name" class="form-label fs-5">Name</label>
+                                <input type="text" id="name" name="name" class="form-control p-3 rounded-md" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label fs-5">Email</label>
+                                <input type="email" id="email" name="email" class="form-control p-3 rounded-md" placeholder="your.email@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label fs-5">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-control p-3 rounded-md" placeholder="Inquiry about loans..." required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="form-label fs-5">Message</label>
+                                <textarea id="message" name="message" rows="5" class="form-control p-3 rounded-md" placeholder="Your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                        </form>
+                    </div>
                 </div>
 
-                <div class="contact-info-wrapper">
-                    <!-- Contact Information -->
-                    <div class="info-card">
-                        <h3 class="card-title">Contact Information</h3>
-                        <p>
-                            <i class="fas fa-envelope"></i> Email: <a href="mailto:info@nigamgroupyouth.org">info@nigamgroupyouth.org</a>
-                        </p>
-                        <p>
-                            <i class="fas fa-phone-alt"></i> Phone: <a href="tel:+918906255286">+91 89062 55286</a>
-                        </p>
-                        <p>
-                            <i class="fas fa-map-marker-alt"></i> Address: Phansidewa, Darjeeling District, West Bengal, India
-                        </p>
-                    </div>
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column h-100">
+                        <!-- Contact Information -->
+                        <div class="card-bg-dark p-4 mb-4 contact-info-card">
+                            <h3 class="h4 fw-bold mb-4 text-white">Contact Information</h3>
+                            <p class="lead mb-3 d-flex align-items-center">
+                                <i class="fas fa-envelope"></i> Email: <a href="mailto:info@nigamgroupyouth.org" class="ms-2">info@nigamgroupyouth.org</a>
+                            </p>
+                            <p class="lead mb-3 d-flex align-items-center">
+                                <i class="fas fa-phone-alt"></i> Phone: <a href="tel:+918906255286" class="ms-2">+91 89062 55286</a>
+                            </p>
+                            <p class="lead mb-0 d-flex align-items-start">
+                                <i class="fas fa-map-marker-alt mt-1"></i> Address: Phansidewa, Darjeeling District, West Bengal, India
+                            </p>
+                        </div>
 
-                    <!-- Follow Us / Social Media -->
-                    <div class="info-card">
-                        <h3 class="card-title">Follow Us</h3>
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/share/1C7vsUy9EQ/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/nigamgroupyouthassociation?igsh=MWZ5dWs1enlzeHBsaA==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <!-- Follow Us / Social Media -->
+                        <div class="card-bg-dark p-4 contact-info-card flex-grow-1">
+                            <h3 class="h4 fw-bold mb-4 text-white">Follow Us</h3>
+                            <div class="social-icons d-flex justify-content-start gap-4">
+                                <a href="https://www.facebook.com/share/1C7vsUy9EQ/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://www.instagram.com/nigamgroupyouthassociation?igsh=MWZ5dWs1enlzeHBsaA==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1003,43 +633,29 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer text-center py-4">
         <div class="container">
-            <p>&copy; <span id="current-year"></span> Nigam Group Youth Association. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#contact">Contact</a>
-                <a href="#">Privacy Policy</a>
+            <p class="mb-2">&copy; <span id="current-year"></span> Nigam Group Youth Association. All rights reserved.</p>
+            <div class="footer-links d-flex justify-content-center gap-3">
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#services">Services</a>
+                <a class="nav-link" href="#contact">Contact</a>
+                <a class="nav-link" href="#">Privacy Policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Toggle and Current Year -->
+    <!-- Bootstrap JavaScript Bundle (Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript for Current Year -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile Menu Toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('active'); // Use 'active' class for visibility
-                });
-
-                // Close mobile menu when a link is clicked
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.remove('active'); // Hide on link click
-                    });
-                });
-            }
-
             // Set Current Year in Footer
             const currentYearSpan = document.getElementById('current-year');
             if (currentYearSpan) {
                 currentYearSpan.textContent = new Date().getFullYear();
             }
+            // Bootstrap's JS handles navbar toggling, no custom code needed for that
         });
     </script>
 </body>
