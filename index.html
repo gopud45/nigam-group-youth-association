@@ -4,160 +4,751 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nigam Group Youth Association - Empowering Lives</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
     <style>
         /* Custom Font - Inter */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        /* Root Colors (from Logo) */
+        :root {
+            --color-nigam-gold: #FFC72C; /* Approx. bright yellow/gold from logo */
+            --color-nigam-blue: #2563EB; /* Bright blue from logo */
+            --color-dark-background: #1A202C; /* Dark background, slightly lighter than pure black */
+            --color-dark-card: #2D3748; /* Darker grey for cards/sections */
+            --color-light-text: #E2E8F0; /* Light grey for main text */
+            --color-muted-text: #A0AEC0; /* Muted grey for secondary text */
+            --color-white: #FFFFFF;
+            --color-black: #000000;
+        }
+
+        /* Base Body Styles */
         body {
             font-family: 'Inter', sans-serif;
-            @apply bg-gray-900 text-gray-100;
-        }
-
-        /* Smooth scrolling for anchor links */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom styling for input focus to match theme */
-        .form-control:focus {
-            @apply ring-2 ring-blue-500 border-blue-500;
-        }
-
-        /* Padding for fixed header */
-        body {
+            background-color: var(--color-dark-background);
+            color: var(--color-light-text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
             padding-top: 64px; /* Adjust based on navbar height */
         }
 
-        /* Custom button hover effect */
+        /* Container for Centering Content */
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem; /* px-4 equivalent */
+            padding-right: 1rem; /* px-4 equivalent */
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-dark-background);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            z-index: 50;
+        }
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem; /* py-4 */
+            padding-bottom: 1rem; /* py-4 */
+        }
+        .navbar-brand {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            color: var(--color-white);
+            letter-spacing: 0.05em; /* tracking-wide */
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .navbar-brand img {
+            border-radius: 9999px; /* rounded-full */
+            margin-right: 0.5rem; /* mr-2 */
+            width: 2.5rem; /* w-10 */
+            height: 2.5rem; /* h-10 */
+            object-fit: cover;
+        }
+        .navbar-brand .gold-text {
+            color: var(--color-nigam-gold);
+        }
+        .navbar-brand .white-text {
+            color: var(--color-white);
+            margin-left: 0.25rem; /* ml-1 */
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-button {
+            display: block; /* md:hidden equivalent */
+            color: var(--color-light-text);
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+        .mobile-menu-button svg {
+            width: 1.5rem; /* w-6 */
+            height: 1.5rem; /* h-6 */
+        }
+
+        /* Desktop Menu */
+        .desktop-menu {
+            display: none; /* hidden md:flex */
+            gap: 1.5rem; /* space-x-6 */
+        }
+        .desktop-menu a {
+            color: var(--color-muted-text); /* text-gray-300 */
+            text-decoration: none;
+            transition: color 0.3s ease; /* transition duration-300 */
+        }
+        .desktop-menu a:hover {
+            color: var(--color-nigam-blue); /* hover:text-blue-500 */
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none; /* hidden md:hidden */
+            background-color: var(--color-dark-card); /* bg-gray-800 */
+            padding-top: 1rem; /* py-4 */
+            padding-bottom: 1rem; /* py-4 */
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 0.5rem 1rem; /* px-4 py-2 */
+            color: var(--color-muted-text); /* text-gray-300 */
+            text-decoration: none;
+            transition: background-color 0.3s ease; /* transition duration-300 */
+        }
+        .mobile-menu a:hover {
+            background-color: var(--color-dark-background); /* hover:bg-gray-700 */
+        }
+        .mobile-menu.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(to right, #1D4ED8, #1E3A8A); /* bg-gradient-to-r from-blue-700 to-blue-900 */
+            color: var(--color-white);
+            padding-top: 5rem; /* py-20 */
+            padding-bottom: 5rem; /* py-20 */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-section::before { /* Background pattern */
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 10px 10px;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800; /* font-extrabold */
+            line-height: 1.25; /* leading-tight */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .hero-subtitle {
+            font-size: 1.25rem; /* text-xl */
+            margin-bottom: 2rem; /* mb-8 */
+            opacity: 0.9;
+        }
+        .hero-description {
+            font-size: 1.125rem; /* text-lg */
+            margin-bottom: 2.5rem; /* mb-10 */
+            max-width: 48rem; /* max-w-3xl */
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.8;
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem; /* gap-4 */
+            margin-top: 1rem; /* Adjust as needed */
+        }
+
+        /* Buttons */
         .btn-primary-custom {
-            @apply bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out;
+            background-color: var(--color-nigam-blue);
+            color: var(--color-white);
+            font-weight: 600; /* font-semibold */
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
         }
         .btn-primary-custom:hover {
-            @apply bg-blue-700 transform -translate-y-1;
+            background-color: #1D4ED8; /* Darker blue */
+            transform: translateY(-0.25rem); /* -translate-y-1 */
         }
 
         .btn-secondary-custom {
-            @apply bg-transparent border-2 border-blue-600 text-blue-600 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out;
+            background-color: transparent;
+            border: 2px solid var(--color-nigam-blue);
+            color: var(--color-nigam-blue);
+            font-weight: 600; /* font-semibold */
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
         .btn-secondary-custom:hover {
-            @apply bg-blue-600 text-white transform -translate-y-1;
+            background-color: var(--color-nigam-blue);
+            color: var(--color-white);
+            transform: translateY(-0.25rem); /* -translate-y-1 */
         }
 
-        /* Specific styles for card backgrounds */
-        .card-bg-dark {
-            @apply bg-gray-800;
+        /* Section Styling */
+        .section-padding {
+            padding-top: 4rem; /* py-16 */
+            padding-bottom: 4rem; /* py-16 */
         }
 
-        /* Tailwind custom colors for logo theme */
-        :root {
-            --color-nigam-gold: #FFC72C; /* Approx. gold/yellow from logo */
-            --color-nigam-blue: #2563EB; /* Matching the blue in the logo */
+        /* About Us Section */
+        .about-section .content-wrapper {
+            display: flex;
+            flex-direction: column; /* flex-col md:flex-row */
+            align-items: center;
+            gap: 3rem; /* gap-12 */
+        }
+        .about-section .text-content {
+            width: 100%; /* md:w-1/2 */
+        }
+        .about-section .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            color: var(--color-nigam-blue);
+            margin-bottom: 1.5rem; /* mb-6 */
+            text-align: center;
+        }
+        .about-section p {
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.625; /* leading-relaxed */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .about-section ul {
+            list-style: none; /* remove default list-disc */
+            padding: 0;
+            font-size: 1.125rem; /* text-lg */
+            margin-top: 1.5rem; /* space-y-2 */
+            margin-bottom: 1.5rem;
+        }
+        .about-section ul li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem; /* spacing between list items */
+        }
+        .about-section ul li i {
+            color: var(--color-nigam-blue);
+            margin-right: 0.5rem; /* mr-2 */
+            font-size: 1.25rem; /* text-xl */
+            margin-top: 0.125rem; /* slight alignment adjustment */
         }
 
-        .text-nigam-gold { color: var(--color-nigam-gold); }
-        .border-nigam-gold { border-color: var(--color-nigam-gold); }
-        .bg-nigam-gold { background-color: var(--color-nigam-gold); }
-        .hover\:text-nigam-gold:hover { color: var(--color-nigam-gold); }
-        .hover\:bg-nigam-gold:hover { background-color: var(--color-nigam-gold); }
-
-        .text-nigam-blue { color: var(--color-nigam-blue); }
-        .bg-nigam-blue { background-color: var(--color-nigam-blue); }
-        .border-nigam-blue { border-color: var(--color-nigam-blue); }
-        .hover\:text-nigam-blue:hover { color: var(--color-nigam-blue); }
-        .hover\:bg-nigam-blue:hover { background-color: var(--color-nigam-blue); }
-
-        /* Ensure gradients use the specified blue shades */
-        .bg-gradient-to-r.from-blue-700.to-blue-900 {
-            background-image: linear-gradient(to right, #1D4ED8, #1E3A8A); /* Tailwind blue-700 to blue-900 */
+        /* Image Gallery */
+        .image-gallery-container {
+            width: 100%; /* md:w-1/2 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem; /* space-y-8 */
         }
-
-        /* Image gallery specific styles */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* grid-cols-2 */
+            gap: 1rem; /* gap-4 */
+            width: 100%;
+            max-width: 32rem; /* max-w-lg */
+            margin-left: auto;
+            margin-right: auto;
+        }
         .image-gallery-item {
-            @apply rounded-lg shadow-xl border-4 border-nigam-blue overflow-hidden;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border: 4px solid var(--color-nigam-blue);
+            overflow: hidden;
             transform: scale(1);
             transition: transform 0.3s ease-in-out;
+            position: relative; /* For aspect ratio */
+            padding-bottom: 75%; /* 4:3 aspect ratio (3/4 * 100%) */
+            height: 0;
         }
         .image-gallery-item:hover {
             transform: scale(1.03);
         }
         .image-gallery-item img {
-            @apply w-full h-full object-cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        /* Team Photo Specific Styling */
+
+        /* Team Photo Styling */
+        .team-photo-wrapper {
+            width: 100%;
+            max-width: 32rem; /* max-w-lg */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            margin-top: 2rem; /* mt-8 */
+        }
+        .team-photo-wrapper .team-title {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            color: var(--color-nigam-gold);
+            margin-bottom: 1rem; /* mb-4 */
+        }
         .team-photo-container {
-            @apply rounded-lg shadow-xl border-4 border-nigam-gold overflow-hidden;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border: 4px solid var(--color-nigam-gold);
+            overflow: hidden;
             transform: scale(1);
             transition: transform 0.3s ease-in-out;
+            position: relative; /* For aspect ratio */
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 * 100%) */
+            height: 0;
         }
         .team-photo-container:hover {
             transform: scale(1.03);
         }
         .team-photo-container img {
-            @apply w-full h-auto object-cover; /* Ensure image scales responsively */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
+        .team-photo-wrapper .team-caption {
+            font-size: 1.125rem; /* text-lg */
+            color: var(--color-muted-text); /* text-gray-400 */
+            margin-top: 1rem; /* mt-4 */
+        }
+
+        /* Our Services Section */
+        .services-section {
+            background-color: var(--color-dark-card); /* bg-gray-800 */
+            color: var(--color-light-text);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* grid-cols-1 */
+            gap: 2rem; /* gap-8 */
+        }
+        .service-card {
+            background-color: var(--color-dark-card); /* card-bg-dark */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 2rem; /* p-8 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border: 1px solid #4A5568; /* border-gray-700 */
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+        .service-card .icon-large {
+            color: var(--color-nigam-blue);
+            margin-bottom: 1rem; /* mb-4 */
+            font-size: 3rem; /* text-5xl */
+            text-align: center;
+        }
+        .service-card .card-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: var(--color-white);
+            margin-bottom: 1rem; /* mb-4 */
+            text-align: center;
+        }
+        .service-card p {
+            font-size: 1.125rem; /* text-lg */
+            margin-bottom: 1rem; /* mb-4 */
+            color: var(--color-muted-text); /* text-gray-300 */
+        }
+        .service-card ul {
+            list-style: disc; /* list-disc */
+            list-style-position: inside; /* list-inside */
+            color: var(--color-muted-text); /* text-gray-400 */
+            font-size: 1rem; /* text-base */
+            margin-top: 0.25rem; /* space-y-1 */
+        }
+        .services-section .center-text {
+            text-align: center;
+            margin-top: 3rem; /* mt-12 */
+        }
+        .services-section .center-text p {
+            font-size: 1.25rem; /* text-xl */
+            margin-bottom: 1.5rem; /* mb-6 */
+            max-width: 48rem; /* max-w-3xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .services-section .center-text a {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            padding-top: 4rem; /* py-16 */
+            padding-bottom: 4rem; /* py-16 */
+            background-color: var(--color-nigam-blue);
+            color: var(--color-white);
+            text-align: center;
+        }
+        .cta-section .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .cta-section p {
+            font-size: 1.25rem; /* text-xl */
+            margin-bottom: 2rem; /* mb-8 */
+            max-width: 48rem; /* max-w-3xl */
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem; /* gap-4 */
+        }
+        .cta-buttons .btn-white {
+            background-color: var(--color-white);
+            color: var(--color-nigam-blue);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-buttons .btn-white:hover {
+            background-color: #F7FAFC; /* hover:bg-gray-100 */
+            transform: translateY(-0.25rem);
+        }
+        .cta-buttons .btn-support {
+            background-color: var(--color-nigam-gold); /* bg-nigam-gold */
+            color: var(--color-black); /* text-gray-900 */
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-buttons .btn-support:hover {
+            background-color: #FFDE59; /* hover:bg-yellow-400 (lighter gold) */
+            transform: translateY(-0.25rem);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--color-dark-background);
+            color: var(--color-light-text);
+        }
+        .contact-content-wrapper {
+            display: flex;
+            flex-direction: column; /* flex-col lg:flex-row */
+            align-items: flex-start;
+            gap: 3rem; /* gap-12 */
+        }
+        .contact-form-container {
+            width: 100%; /* lg:w-1/2 */
+            background-color: var(--color-dark-card); /* card-bg-dark */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 2rem; /* p-8 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border: 1px solid #4A5568; /* border-gray-700 */
+        }
+        .contact-form-container .form-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: var(--color-white);
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .contact-form-group {
+            margin-bottom: 1.5rem; /* space-y-6 equivalent in children, but added as margin-bottom for parent div */
+        }
+        .contact-form-group label {
+            display: block;
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 500; /* font-medium */
+            color: var(--color-muted-text); /* text-gray-300 */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .contact-form-group input,
+        .contact-form-group textarea {
+            width: 100%;
+            padding: 0.75rem; /* p-3 */
+            border-radius: 0.375rem; /* rounded-md */
+            background-color: #4A5568; /* bg-gray-700 */
+            color: var(--color-light-text);
+            border: 1px solid #718096; /* border-gray-600 */
+            outline: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .contact-form-group input:focus,
+        .contact-form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-nigam-blue);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5); /* ring-2 ring-blue-500 */
+        }
+        .contact-form-group textarea {
+            min-height: 7.5rem; /* rows-5 equivalent */
+            resize: vertical;
+        }
+        .contact-form-container .submit-button {
+            width: 100%;
+            margin-top: 1.5rem; /* mt-6 or mt-3 depending on context */
+        }
+
+        .contact-info-wrapper {
+            width: 100%; /* lg:w-1/2 */
+            display: flex;
+            flex-direction: column;
+            gap: 2rem; /* space-y-8 */
+        }
+        .info-card {
+            background-color: var(--color-dark-card); /* card-bg-dark */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 2rem; /* p-8 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border: 1px solid #4A5568; /* border-gray-700 */
+        }
+        .info-card .card-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            color: var(--color-white);
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .info-card p {
+            font-size: 1.125rem; /* text-lg */
+            margin-bottom: 1rem; /* mb-4 */
+            display: flex;
+            align-items: center;
+            color: var(--color-muted-text); /* text-gray-300 */
+        }
+        .info-card p:last-child {
+             margin-bottom: 0;
+        }
+        .info-card p i {
+            color: var(--color-nigam-blue);
+            margin-right: 0.75rem; /* mr-3 */
+            font-size: 1.25rem; /* text-xl */
+        }
+        .info-card p i.fa-map-marker-alt {
+            margin-top: 0.25rem; /* mt-1 */
+            align-self: flex-start;
+        }
+        .info-card p a {
+            color: #63B3ED; /* text-blue-400 */
+            text-decoration: none;
+            margin-left: 0.5rem; /* ml-2 */
+        }
+        .info-card p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            gap: 1.5rem; /* space-x-6 */
+        }
+        .social-icons a {
+            color: var(--color-nigam-blue); /* text-blue-400 */
+            transition: color 0.3s ease; /* transition duration-300 */
+            font-size: 1.875rem; /* text-3xl */
+        }
+        .social-icons a:hover {
+            color: var(--color-nigam-gold); /* hover:text-blue-600 */
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--color-dark-card); /* bg-gray-800 */
+            color: var(--color-muted-text); /* text-gray-400 */
+            padding-top: 2rem; /* py-8 */
+            padding-bottom: 2rem; /* py-8 */
+            text-align: center;
+            font-size: 0.875rem; /* text-sm */
+        }
+        .footer-links {
+            margin-top: 1rem; /* mt-4 */
+            display: flex;
+            justify-content: center;
+            gap: 1rem; /* space-x-4 */
+        }
+        .footer-links a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--color-nigam-blue);
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) { /* md breakpoint */
+            .section-padding {
+                padding-top: 6rem; /* md:py-24 */
+                padding-bottom: 6rem; /* md:py-24 */
+            }
+            .hero-title {
+                font-size: 3rem; /* md:text-6xl */
+            }
+            .hero-subtitle {
+                font-size: 1.5rem; /* md:text-2xl */
+            }
+            .hero-description {
+                font-size: 1.25rem; /* md:text-xl */
+            }
+            .navbar-content {
+                padding-top: 1.5rem; /* py-6 */
+                padding-bottom: 1.5rem; /* py-6 */
+            }
+            .mobile-menu-button {
+                display: none; /* md:hidden equivalent */
+            }
+            .desktop-menu {
+                display: flex; /* md:flex */
+            }
+            .about-section .content-wrapper {
+                flex-direction: row; /* md:flex-row */
+            }
+            .about-section .text-content {
+                width: 50%; /* md:w-1/2 */
+            }
+            .about-section .section-title {
+                text-align: left; /* md:text-left */
+            }
+            .image-gallery-container {
+                width: 50%; /* md:w-1/2 */
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+            }
+            .cta-section .section-title {
+                font-size: 3rem; /* md:text-4xl */
+            }
+            .cta-section p {
+                font-size: 1.5rem; /* md:text-xl */
+            }
+            .contact-content-wrapper {
+                flex-direction: row; /* lg:flex-row */
+            }
+            .contact-form-container {
+                width: 50%; /* lg:w-1/2 */
+            }
+            .contact-info-wrapper {
+                width: 50%; /* lg:w-1/2 */
+            }
+        }
+
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
+            }
+        }
+
     </style>
-    <!-- Font Awesome for Icons (for external services/social media) -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="antialiased">
 
     <!-- Navigation Bar -->
-    <nav class="fixed top-0 left-0 w-full bg-gray-900 shadow-lg z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <nav class="navbar">
+        <div class="container navbar-content">
             <!-- Logo/Brand Name -->
-            <a href="#hero" class="text-2xl font-bold text-white tracking-wide flex items-center">
-                <img src="logo.bg.jpg" alt="NGYA Logo" class="rounded-full mr-2 w-10 h-10 object-cover">
-                <span class="text-nigam-gold">Nigam</span> <span class="text-white ml-1">Group Youth Association</span>
+            <a href="#hero" class="navbar-brand">
+                <img src="logo.bg.jpg" alt="NGYA Logo">
+                <span class="gold-text">Nigam</span> <span class="white-text">Group Youth Association</span>
             </a>
 
             <!-- Mobile Menu Button (Hamburger) -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-100 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-6">
-                <a href="#hero" class="text-gray-300 hover:text-nigam-blue transition duration-300">Home</a>
-                <a href="#about" class="text-gray-300 hover:text-nigam-blue transition duration-300">About Us</a>
-                <a href="#services" class="text-gray-300 hover:text-nigam-blue transition duration-300">Our Services</a>
-                <a href="#contact" class="text-gray-300 hover:text-nigam-blue transition duration-300">Contact</a>
+            <div class="desktop-menu">
+                <a href="#hero">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#services">Our Services</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
 
         <!-- Mobile Menu (Collapsed by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 py-4">
-            <a href="#hero" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Home</a>
-            <a href="#about" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">About Us</a>
-            <a href="#services" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Our Services</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-300 hover:bg-gray-700 transition duration-300">Contact</a>
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#hero">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#services">Our Services</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative bg-gradient-to-r from-blue-700 to-blue-900 text-white py-20 md:py-32 overflow-hidden min-h-screen flex items-center justify-center">
-        <div class="absolute inset-0 opacity-10">
-            <!-- Background pattern for visual interest -->
-            <svg class="h-full w-full" fill="none" viewBox="0 0 100 100">
-                <pattern id="pattern-circles" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.1)"></circle>
-                </pattern>
-                <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)"></rect>
-            </svg>
-        </div>
-        <div class="container mx-auto px-4 text-center z-10 relative">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+    <section id="hero" class="hero-section">
+        <div class="container hero-content">
+            <h1 class="hero-title">
                 Empowering Lives, Building Futures
             </h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up delay-100">
+            <p class="hero-subtitle">
                 Nigam Group Youth Association: Your Partner in Sustainable Growth.
             </p>
-            <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-80 animate-fade-in-up delay-200">
+            <p class="hero-description">
                 We provide accessible, low-interest micro-loans to underprivileged individuals and budding entrepreneurs, fostering self-reliance and community prosperity.
             </p>
-            <div class="space-x-4 flex justify-center flex-wrap gap-4 animate-fade-in-up delay-300">
+            <div class="hero-buttons">
                 <a href="#services" class="btn-primary-custom">
                     Learn More <i class="fas fa-arrow-right ml-2"></i>
                 </a>
@@ -169,65 +760,65 @@
     </section>
 
     <!-- About Us Section -->
-    <section id="about" class="py-16 md:py-24 bg-gray-900 text-gray-100">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-1/2">
-                <h2 class="text-3xl md:text-4xl font-bold text-nigam-blue mb-6 text-center md:text-left">About Nigam Group Youth Association</h2>
-                <p class="text-lg leading-relaxed mb-6">
+    <section id="about" class="section-padding bg-gray-900 about-section">
+        <div class="container content-wrapper">
+            <div class="text-content">
+                <h2 class="section-title">About Nigam Group Youth Association</h2>
+                <p>
                     Founded with a vision to uplift communities, Nigam Group Youth Association is dedicated to supporting individuals and small businesses by providing crucial financial assistance. We believe in fostering economic independence and sustainable development through accessible and equitable loan programs.
                 </p>
-                <p class="text-lg leading-relaxed mb-6">
-                    Our commitment extends beyond just financial aid; we aim to empower our beneficiaries with the resources and confidence needed to thrive. We work closely with local communities to identify needs and tailor our support for maximum impact.
+                <p>
+                    Our commitment extends beyond just financial aid; we aim to empower our beneficiaries with the resources and confidence needed to thrive. We work closely with local communities in Phansidewa, Darjeeling District, West Bengal to identify needs and tailor our support for maximum impact.
                 </p>
-                <ul class="list-disc list-inside text-lg space-y-2">
-                    <li><i class="fas fa-check-circle text-nigam-blue mr-2"></i>Mission-driven approach to community development</li>
-                    <li><i class="fas fa-check-circle text-nigam-blue mr-2"></i>Transparent and fair lending practices</li>
-                    <li><i class="fas fa-check-circle text-nigam-blue mr-2"></i>Dedicated to fostering self-reliance</li>
-                    <li><i class="fas fa-check-circle text-nigam-blue mr-2"></i>Committed to long-term impact</li>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i>Mission-driven approach to community development</li>
+                    <li><i class="fas fa-check-circle"></i>Transparent and fair lending practices</li>
+                    <li><i class="fas fa-check-circle"></i>Dedicated to fostering self-reliance</li>
+                    <li><i class="fas fa-check-circle"></i>Committed to long-term impact</li>
                 </ul>
             </div>
-            <!-- Community Support Images -->
-            <div class="md:w-1/2 w-full flex flex-col justify-center items-center space-y-8">
+            <!-- Community Support Images and Team Photo -->
+            <div class="image-gallery-container">
                 <!-- Image Gallery -->
-                <div class="grid grid-cols-2 gap-4 w-full max-w-lg mx-auto">
-                    <div class="image-gallery-item aspect-w-16 aspect-h-9">
+                <div class="image-grid">
+                    <div class="image-gallery-item">
                         <img src="2.jpeg" alt="Community Event 1">
                     </div>
-                    <div class="image-gallery-item aspect-w-16 aspect-h-9">
+                    <div class="image-gallery-item">
                         <img src="3.jpeg" alt="Loan Distribution">
                     </div>
-                    <div class="image-gallery-item aspect-w-16 aspect-h-9">
+                    <div class="image-gallery-item">
                         <img src="4.jpeg" alt="Training Session">
                     </div>
-                    <div class="1.jpeg">
+                    <div class="image-gallery-item">
                         <img src="1.jpeg" alt="Beneficiary Success">
                     </div>
                 </div>
                 <!-- Team Photo -->
-                <div class="w-full max-w-lg mx-auto text-center mt-8">
-                    <h3 class="text-xl md:text-2xl font-bold text-nigam-gold mb-4">Our Dedicated Team</h3>
+                <div class="team-photo-wrapper">
+                    <h3 class="team-title">Our Dedicated Team</h3>
                     <div class="team-photo-container">
                         <img src="team.jpeg" alt="Nigam Group Youth Association Team Photo">
                     </div>
-                    <p class="text-lg text-gray-400 mt-4">The faces behind our mission.</p>
+                    <p class="team-caption">The faces behind our mission, serving Phansidewa and beyond.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Our Services Section (Loan Programs) -->
-    <section id="services" class="py-16 md:py-24 bg-gray-800 text-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-nigam-blue mb-12">Our Loan Programs: Fueling Dreams with Dignity</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section id="services" class="section-padding services-section">
+        <div class="container">
+            <h2 class="section-title text-center" style="color: var(--color-nigam-blue);">Our Loan Programs: Fueling Dreams with Dignity</h2>
+            <div class="services-grid">
                 <!-- Loan Type 1: Business Start-up Loans -->
-                <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
-                    <div class="text-nigam-blue mb-4 text-5xl text-center"><i class="fas fa-lightbulb"></i></div>
-                    <h3 class="text-2xl font-semibold text-white mb-4 text-center">Business Start-up Loans</h3>
-                    <p class="text-lg mb-4 text-gray-300">
+                <div class="service-card">
+                    <div class="icon-large"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="card-title">Business Start-up Loans</h3>
+                    <p>
                         Designed for aspiring entrepreneurs who need initial capital to launch their small businesses. We offer flexible terms and guidance to help your venture succeed.
                     </p>
-                    <ul class="list-disc list-inside text-gray-400 text-base space-y-1">
+                    <ul>
                         <li>Minimal interest rates</li>
                         <li>Flexible repayment schedules</li>
                         <li>Support for micro-enterprises</li>
@@ -235,13 +826,13 @@
                 </div>
 
                 <!-- Loan Type 2: Skill Development Loans -->
-                <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
-                    <div class="text-nigam-blue mb-4 text-5xl text-center"><i class="fas fa-graduation-cap"></i></div>
-                    <h3 class="text-2xl font-semibold text-white mb-4 text-center">Skill Development Loans</h3>
-                    <p class="text-lg mb-4 text-gray-300">
+                <div class="service-card">
+                    <div class="icon-large"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="card-title">Skill Development Loans</h3>
+                    <p>
                         Empowering individuals to acquire new skills or vocational training, leading to better employment opportunities and improved livelihoods.
                     </p>
-                    <ul class="list-disc list-inside text-gray-400 text-base space-y-1">
+                    <ul>
                         <li>Covers course fees and materials</li>
                         <li>Focus on marketable skills</li>
                         <li>Pathways to employment</li>
@@ -249,13 +840,13 @@
                 </div>
 
                 <!-- Loan Type 3: Essential Needs Loans -->
-                <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700 transform hover:scale-105 transition duration-300 ease-in-out">
-                    <div class="text-nigam-blue mb-4 text-5xl text-center"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3 class="text-2xl font-semibold text-white mb-4 text-center">Essential Needs Loans</h3>
-                    <p class="text-lg mb-4 text-gray-300">
+                <div class="service-card">
+                    <div class="icon-large"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3 class="card-title">Essential Needs Loans</h3>
+                    <p>
                         For families and individuals facing immediate financial challenges for essential needs like healthcare, education, or home repairs.
                     </p>
-                    <ul class="list-disc list-inside text-gray-400 text-base space-y-1">
+                    <ul>
                         <li>Quick processing for emergencies</li>
                         <li>Supports basic necessities</li>
                         <li>Relief during difficult times</li>
@@ -263,29 +854,29 @@
                 </div>
             </div>
 
-            <div class="text-center mt-12">
-                <p class="text-xl mb-6 text-gray-300 max-w-3xl mx-auto">
+            <div class="center-text">
+                <p>
                     Our application process is designed to be simple and supportive. We review each application carefully to ensure our resources make the most significant difference.
                 </p>
-                <a href="#contact" class="btn-primary-custom inline-flex items-center">
-                    Begin Your Application <i class="fas fa-file-invoice ml-3"></i>
+                <a href="#contact" class="btn-primary-custom">
+                    Begin Your Application <i class="fas fa-file-invoice ml-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action Section (Optional, if you want a prominent CTA) -->
-    <section class="py-16 md:py-24 bg-nigam-blue text-white text-center">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Join Us in Making a Difference</h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+    <!-- Call to Action Section -->
+    <section class="section-padding cta-section" style="background-color: var(--color-nigam-blue);">
+        <div class="container">
+            <h2 class="section-title">Join Us in Making a Difference</h2>
+            <p>
                 Whether you're seeking support or looking to contribute, Nigam Group Youth Association offers pathways to create lasting positive change in our communities.
             </p>
-            <div class="space-x-4 flex justify-center flex-wrap gap-4">
-                <a href="#contact" class="bg-white text-nigam-blue font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-gray-100 transition duration-300 ease-in-out transform hover:-translate-y-1">
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-white">
                     Apply for a Loan <i class="fas fa-hand-holding-dollar ml-2"></i>
                 </a>
-                <a href="#" class="bg-nigam-gold text-gray-900 font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-yellow-400 transition duration-300 ease-in-out transform hover:-translate-y-1">
+                <a href="#" class="btn-support">
                     Donate & Support <i class="fas fa-heart ml-2"></i>
                 </a>
             </div>
@@ -293,64 +884,62 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-gray-900 text-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-nigam-blue text-center mb-12">Get in Touch</h2>
-            <div class="flex flex-col lg:flex-row items-start gap-12">
-                <div class="lg:w-1/2 w-full card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
-                    <h3 class="text-2xl font-semibold text-white mb-6">Send Us a Message</h3>
-                    <!--
-                        IMPORTANT: For a real website, you CANNOT send email directly from HTML/CSS/JS.
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <h2 class="section-title text-center" style="color: var(--color-nigam-blue);">Get in Touch</h2>
+            <div class="contact-content-wrapper">
+                <div class="contact-form-container">
+                    <h3 class="form-title">Send Us a Message</h3>
+                    <!-- IMPORTANT: For a real website, you CANNOT send email directly from HTML/CSS/JS.
                         You need a backend service (e.g., PHP script, Node.js API) or a third-party form service
                         like Formspree.io, Netlify Forms, or EmailJS.
                         For this demo, the action is set to a placeholder.
                         Replace "YOUR_FORMSPREE_ENDPOINT" with your actual endpoint
-                        if you use a service like Formspree.
-                    -->
-                    <form action="#" method="POST" class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-lg font-medium text-gray-300 mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-nigam-blue focus:border-nigam-blue" placeholder="Your Name" required>
+                        if you use a service like Formspree. -->
+                    <form action="#" method="POST">
+                        <div class="contact-form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
-                        <div>
-                            <label for="email" class="block text-lg font-medium text-gray-300 mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-nigam-blue focus:border-nigam-blue" placeholder="your.email@example.com" required>
+                        <div class="contact-form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
                         </div>
-                        <div>
-                            <label for="subject" class="block text-lg font-medium text-gray-300 mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-nigam-blue focus:border-nigam-blue" placeholder="Inquiry about loans..." required>
+                        <div class="contact-form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Inquiry about loans..." required>
                         </div>
-                        <div>
-                            <label for="message" class="block text-lg font-medium text-gray-300 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" class="form-control w-full p-3 rounded-md bg-gray-700 text-gray-100 border border-gray-600 focus:ring-nigam-blue focus:border-nigam-blue" placeholder="Your message here..." required></textarea>
+                        <div class="contact-form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
                         </div>
-                        <button type="submit" class="btn-primary-custom w-full">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
+                        <button type="submit" class="btn-primary-custom submit-button">Send Message <i class="fas fa-paper-plane ml-2"></i></button>
                     </form>
                 </div>
 
-                <div class="lg:w-1/2 w-full space-y-8">
+                <div class="contact-info-wrapper">
                     <!-- Contact Information -->
-                    <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
-                        <h3 class="text-2xl font-semibold text-white mb-6">Contact Information</h3>
-                        <p class="text-lg mb-4 flex items-center text-gray-300">
-                            <i class="fas fa-envelope text-nigam-blue mr-3 text-xl"></i> Email: <a href="" class="text-blue-400 hover:underline ml-2"></a>
+                    <div class="info-card">
+                        <h3 class="card-title">Contact Information</h3>
+                        <p>
+                            <i class="fas fa-envelope"></i> Email: <a href="mailto:info@nigamgroupyouth.org">info@nigamgroupyouth.org</a>
                         </p>
-                        <p class="text-lg mb-4 flex items-center text-gray-300">
-                            <i class="fas fa-phone-alt text-nigam-blue mr-3 text-xl"></i> Phone: <a href="tel:+918906255286" class="text-blue-400 hover:underline ml-2">+91 89062 55286</a>
+                        <p>
+                            <i class="fas fa-phone-alt"></i> Phone: <a href="tel:+918906255286">+91 89062 55286</a>
                         </p>
-                        <p class="text-lg mb-4 flex items-start text-gray-300">
-                            <i class="fas fa-map-marker-alt text-nigam-blue mr-3 text-xl mt-1"></i> Address: Phansidewa, Darjeeling District, West Bengal, India
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i> Address: Phansidewa, Darjeeling District, West Bengal, India
                         </p>
                     </div>
 
                     <!-- Follow Us / Social Media -->
-                    <div class="card-bg-dark rounded-lg p-8 shadow-xl border border-gray-700">
-                        <h3 class="text-2xl font-semibold text-white mb-6">Follow Us</h3>
-                        <div class="flex space-x-6">
-                            <a href="https://www.facebook.com/share/1C7vsUy9EQ/" class="text-nigam-blue hover:text-nigam-gold transition duration-300 text-3xl" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="text-nigam-blue hover:text-nigam-gold transition duration-300 text-3xl" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-nigam-blue hover:text-nigam-gold transition duration-300 text-3xl" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/nigamgroupyouthassociation?igsh=MWZ5dWs1enlzeHBsaA==" class="text-nigam-blue hover:text-nigam-gold transition duration-300 text-3xl" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <div class="info-card">
+                        <h3 class="card-title">Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/share/1C7vsUy9EQ/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/nigamgroupyouthassociation?igsh=MWZ5dWs1enlzeHBsaA==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -359,14 +948,14 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-400 py-8">
-        <div class="container mx-auto px-4 text-center text-sm">
+    <footer class="footer">
+        <div class="container">
             <p>&copy; <span id="current-year"></span> Nigam Group Youth Association. All rights reserved.</p>
-            <div class="mt-4 space-x-4">
-                <a href="#about" class="hover:text-nigam-blue transition duration-300">About</a>
-                <a href="#services" class="hover:text-nigam-blue transition duration-300">Services</a>
-                <a href="#contact" class="hover:text-nigam-blue transition duration-300">Contact</a>
-                <a href="#" class="hover:text-nigam-blue transition duration-300">Privacy Policy</a>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
             </div>
         </div>
     </footer>
@@ -380,13 +969,13 @@
 
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('active'); // Use 'active' class for visibility
                 });
 
                 // Close mobile menu when a link is clicked
                 mobileMenu.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('active'); // Hide on link click
                     });
                 });
             }
