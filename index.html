@@ -333,6 +333,9 @@
         .contact-info-card .lead a {
             color: #63B3ED;
             text-decoration: none;
+            /* Added for email overflow fix */
+            word-break: break-all;
+            display: inline-block; /* Essential for word-break to work properly with flex parent */
         }
         .contact-info-card .lead a:hover {
             text-decoration: underline;
@@ -414,7 +417,7 @@
             <!-- Logo/Brand Name -->
             <a class="navbar-brand d-flex align-items-center" href="#hero">
                 <img src="logo.bg.jpg" alt="NGYA Logo" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;">
-                <span class="gold-text fw-bold me-1">Nigam</span> <span class="white-text fw-bold">Group Youth </span>
+                <span class="gold-text fw-bold me-1">Nigam</span> <span class="white-text fw-bold">Group Youth Association</span>
             </a>
 
             <!-- Mobile Menu Toggler -->
@@ -426,7 +429,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+                        <a class="nav-link" href="#hero">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About Us</a>
@@ -693,7 +696,7 @@
     </footer>
 
     <!-- WhatsApp Sticky Button -->
-    <a href="https://wa.me/8617024636" class="whatsapp-button" target="_blank" aria-label="WhatsApp Us">
+    <a href="https://wa.me/YOUR_WHATSAPP_PHONE_NUMBER" class="whatsapp-button" target="_blank" aria-label="WhatsApp Us">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -748,6 +751,39 @@
                     formError.classList.remove('d-none');
                 }
             });
+
+            // Dynamic Navbar Active State on Scroll
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const sections = document.querySelectorAll('section'); // Select all sections with an ID
+
+            function updateActiveNavLink() {
+                let currentSectionId = '';
+                // Get the scroll position, adjusted by navbar height to make activation more accurate
+                const scrollY = window.scrollY + document.querySelector('.navbar').offsetHeight + 10; // Added a small offset for better feel
+
+                sections.forEach(section => {
+                    if (section.id) { // Ensure the section has an ID
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+
+                        if (scrollY >= sectionTop && scrollY < (sectionTop + sectionHeight)) {
+                            currentSectionId = section.id;
+                        }
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    // Check if the link's href matches the current section ID
+                    if (link.getAttribute('href') && link.getAttribute('href').includes(currentSectionId)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Call on scroll and on load
+            window.addEventListener('scroll', updateActiveNavLink);
+            updateActiveNavLink(); // Call once on load to set initial active state
         });
     </script>
 </body>
