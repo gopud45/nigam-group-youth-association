@@ -11,14 +11,14 @@
         /* Custom Font - Inter */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-        /* Root Colors (from Logo) */
+        /* Root Colors (from Logo) - Adjusted for smoother theme */
         :root {
-            --color-nigam-gold: #FFC72C; /* Approx. bright yellow/gold from logo */
-            --color-nigam-blue: #2563EB; /* Bright blue from logo */
-            --color-dark-background: #1A202C; /* Dark background, slightly lighter than pure black */
-            --color-dark-card: #2D3748; /* Darker grey for cards/sections */
-            --color-light-text: #E2E8F0; /* Light grey for main text */
-            --color-muted-text: #A0AEC0; /* Muted grey for secondary text */
+            --color-nigam-gold: #FBBF24; /* A slightly warmer, balanced gold */
+            --color-nigam-blue: #3B82F6; /* A slightly softer, yet vibrant blue */
+            --color-dark-background: #1F2937; /* Softer dark gray, like charcoal */
+            --color-dark-card: #374151; /* Deeper gray for cards, good contrast with new background */
+            --color-light-text: #E2E8F0; /* Light grey for main text (retained) */
+            --color-muted-text: #A0AEC0; /* Muted grey for secondary text (retained) */
             --color-white: #FFFFFF;
             --color-black: #000000;
         }
@@ -82,7 +82,8 @@
 
         /* Hero Section Customization */
         .hero-section {
-            background: linear-gradient(to right, #1D4ED8, #1E3A8A); /* Tailwind blue-700 to blue-900 */
+            /* Adjusted gradient to use new blue tones for smoother transition */
+            background: linear-gradient(to right, #2563EB, #1E3A8A); /* Using blue-700 to blue-900 equivalent */
             color: var(--color-white);
             min-height: 100vh;
             display: flex;
@@ -122,7 +123,7 @@
             cursor: pointer;
         }
         .btn-primary-custom:hover {
-            background-color: #1D4ED8; /* Darker blue */
+            background-color: #2563EB; /* Darker blue for hover */
             transform: translateY(-0.1rem);
         }
 
@@ -405,18 +406,36 @@
             }
         }
 
-        /* UPI Modal specific styling */
+        /* UPI Modal specific styling - Text Highlighting */
         #upi-id-display {
-            background-color: var(--color-dark-background) !important; /* Make it darker for highlight */
-            color: var(--color-nigam-gold) !important; /* Highlight color */
-            font-weight: bold !important; /* Make text bold */
-            border: 1px solid var(--color-nigam-gold) !important; /* Add a border for emphasis */
-            padding-left: 0.75rem; /* Adjust padding due to input-group-text */
-            padding-right: 0.75rem;
+            background-color: transparent !important; /* No background */
+            border: none !important; /* No border */
+            color: var(--color-nigam-gold) !important; /* Gold text */
+            font-weight: bold !important; /* Bold text */
+            padding: 0.75rem 0.5rem !important; /* Minimal padding */
+            box-shadow: none !important; /* No box shadow */
+            outline: none !important; /* No outline on focus */
+            cursor: default; /* Indicate it's not a standard input to type in */
         }
         #upi-id-display:focus {
-            box-shadow: 0 0 0 0.25rem rgba(255, 199, 44, 0.25) !important; /* Focus ring with gold color */
+            box-shadow: none !important;
+            border-color: transparent !important;
         }
+
+        /* Adjust input group text to match the modal's background and be subtle */
+        .input-group-text {
+            background-color: transparent !important; /* No background */
+            color: var(--color-muted-text) !important; /* Muted text color for the label */
+            border: none !important; /* No border */
+            padding-right: 0.25rem !important; /* Adjust padding to bring closer to UPI ID */
+        }
+        /* Remove any conflicting left border that might appear from form-control */
+        #upi-id-display.form-control {
+            border-left: none !important;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+
     </style>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -470,7 +489,7 @@
                 We provide accessible, low-interest micro-loans to underprivileged individuals and budding entrepreneurs, fostering self-reliance and community prosperity.
             </p>
             <div class="d-flex justify-content-center flex-wrap gap-3">
-                <a href="#about" target="_blank" class="btn btn-primary-custom">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScXdtXzvj8xk0k3mPygp1SHezgbaaMGt7OlNhIlyoM_qda8LQ/viewform?usp=dialog" target="_blank" class="btn btn-primary-custom">
                     Learn More <i class="fas fa-arrow-right ms-2"></i>
                 </a>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScXdtXzvj8xk0k3mPygp1SHezgbaaMGt7OlNhIlyoM_qda8LQ/viewform?usp=dialog" target="_blank" class="btn btn-secondary-custom">
@@ -725,7 +744,7 @@
                     <p class="lead mb-4 text-light">Scan to Donate or Pay with UPI App</p>
                     <img id="upi-qr-code" src="qr.jpg" alt="UPI QR Code" class="img-fluid rounded mb-3" style="max-width: 250px;">
                     <div class="input-group mb-3 justify-content-center">
-                        <span class="input-group-text bg-gray-700 text-light border-secondary">UPI ID:</span>
+                        <span class="input-group-text">UPI ID:</span>
                         <input type="text" class="form-control text-center" id="upi-id-display" value="gopud451@axl" readonly>
                         <button class="btn btn-primary-custom" type="button" id="copyUpiId">Copy</button>
                     </div>
