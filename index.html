@@ -405,6 +405,18 @@
             }
         }
 
+        /* UPI Modal specific styling */
+        #upi-id-display {
+            background-color: var(--color-dark-background) !important; /* Make it darker for highlight */
+            color: var(--color-nigam-gold) !important; /* Highlight color */
+            font-weight: bold !important; /* Make text bold */
+            border: 1px solid var(--color-nigam-gold) !important; /* Add a border for emphasis */
+            padding-left: 0.75rem; /* Adjust padding due to input-group-text */
+            padding-right: 0.75rem;
+        }
+        #upi-id-display:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 199, 44, 0.25) !important; /* Focus ring with gold color */
+        }
     </style>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -438,9 +450,6 @@
                         <a class="nav-link" href="#services">Our Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#upiPaymentModal">Donate</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
@@ -461,10 +470,10 @@
                 We provide accessible, low-interest micro-loans to underprivileged individuals and budding entrepreneurs, fostering self-reliance and community prosperity.
             </p>
             <div class="d-flex justify-content-center flex-wrap gap-3">
-                <a href="#services" class="btn btn-primary-custom">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScXdtXzvj8xk0k3mPygp1SHezgbaaMGt7OlNhIlyoM_qda8LQ/viewform?usp=dialog" target="_blank" class="btn btn-primary-custom">
                     Learn More <i class="fas fa-arrow-right ms-2"></i>
                 </a>
-                <a href="#contact" class="btn btn-secondary-custom">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScXdtXzvj8xk0k3mPygp1SHezgbaaMGt7OlNhIlyoM_qda8LQ/viewform?usp=dialog" target="_blank" class="btn btn-secondary-custom">
                     Apply for Loan <i class="fas fa-hand-holding-dollar ms-2"></i>
                 </a>
             </div>
@@ -586,7 +595,7 @@
                 <p class="lead mb-4 mx-auto" style="max-width: 48rem;">
                     Our application process is designed to be simple and supportive. We review each application carefully to ensure our resources make the most significant difference.
                 </p>
-                <a href="#contact" class="btn btn-primary-custom">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScXdtXzvj8xk0k3mPygp1SHezgbaaMGt7OlNhIlyoM_qda8LQ/viewform?usp=dialog" target="_blank" class="btn btn-primary-custom">
                     Begin Your Application <i class="fas fa-file-invoice ms-2"></i>
                 </a>
             </div>
@@ -601,7 +610,7 @@
                 Whether you're seeking support or looking to contribute, Nigam Group Youth Association offers pathways to create lasting positive change in our communities.
             </p>
             <div class="d-flex justify-content-center flex-wrap gap-3">
-                <a href="#contact" class="btn btn-white-custom">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScXdtXzvj8xk0k3mPygp1SHezgbaaMGt7OlNhIlyoM_qda8LQ/viewform?usp=dialog" target="_blank" class="btn btn-white-custom">
                     Apply for a Loan <i class="fas fa-hand-holding-dollar ms-2"></i>
                 </a>
                 <!-- Updated Donate Button to open UPI Payment Modal -->
@@ -700,7 +709,7 @@
     </footer>
 
     <!-- WhatsApp Sticky Button -->
-    <a href="https://wa.me/8617024636" class="whatsapp-button" target="_blank" aria-label="WhatsApp Us">
+    <a href="https://wa.me/918906255286" class="whatsapp-button" target="_blank" aria-label="WhatsApp Us">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -717,10 +726,10 @@
                     <img id="upi-qr-code" src="qr.jpg" alt="UPI QR Code" class="img-fluid rounded mb-3" style="max-width: 250px;">
                     <div class="input-group mb-3 justify-content-center">
                         <span class="input-group-text bg-gray-700 text-light border-secondary">UPI ID:</span>
-                        <input type="text" class="form-control bg-gray-700 text-light border-secondary text-center" id="upi-id-display" value="gopud451@axl" readonly>
+                        <input type="text" class="form-control text-center" id="upi-id-display" value="gopud451@axl" readonly>
                         <button class="btn btn-primary-custom" type="button" id="copyUpiId">Copy</button>
                     </div>
-                    <a href="upi://pay?pa=YOUR_UPI_ID@bank&pn=Nigam%20Group%20Youth%20Association&mc=8000&tid=&tr=&tn=Donation&am=&cu=INR" class="btn btn-primary-custom w-75 mb-3" id="payWithUpiApp">
+                    <a href="upi://pay?pa=gopud451@axl&pn=Nigam%20Group%20Youth%20Association&mc=8000&tid=&tr=&tn=Donation&am=&cu=INR" class="btn btn-primary-custom w-75 mb-3" id="payWithUpiApp">
                         Pay with UPI App <i class="fas fa-mobile-alt ms-2"></i>
                     </a>
                     <p class="small text-muted mb-0">
@@ -733,7 +742,7 @@
 
     <!-- Bootstrap JavaScript Bundle (Popper included) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Custom JavaScript for Current Year, Form Submission, and UPI Modal -->
+    <!-- Custom JavaScript for Current Year and Form Submission -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Set Current Year in Footer
@@ -805,10 +814,9 @@
 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    // Special handling for the Donate link in the navbar
-                    if (link.getAttribute('data-bs-target') === '#upiPaymentModal') {
-                        // This link does not correspond to a scrollable section, so no active state based on scroll
-                        return;
+                    // Special handling for links that open modals or external forms (not scrollable sections)
+                    if (link.getAttribute('data-bs-target') || link.getAttribute('target') === '_blank') {
+                        return; // Don't apply active class to these links based on scroll
                     }
                     // Check if the link's href matches the current section ID
                     if (link.getAttribute('href') && link.getAttribute('href').includes(currentSectionId)) {
