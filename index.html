@@ -438,6 +438,9 @@
                         <a class="nav-link" href="#services">Our Services</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#upiPaymentModal">Donate</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
@@ -601,9 +604,10 @@
                 <a href="#contact" class="btn btn-white-custom">
                     Apply for a Loan <i class="fas fa-hand-holding-dollar ms-2"></i>
                 </a>
-                <a href="#" class="btn btn-support-custom">
+                <!-- Updated Donate Button to open UPI Payment Modal -->
+                <button type="button" class="btn btn-support-custom" data-bs-toggle="modal" data-bs-target="#upiPaymentModal">
                     Donate & Support <i class="fas fa-heart ms-2"></i>
-                </a>
+                </button>
             </div>
         </div>
     </section>
@@ -696,13 +700,40 @@
     </footer>
 
     <!-- WhatsApp Sticky Button -->
-    <a href="https://wa.me/YOUR_WHATSAPP_PHONE_NUMBER" class="whatsapp-button" target="_blank" aria-label="WhatsApp Us">
+    <a href="https://wa.me/8617024636" class="whatsapp-button" target="_blank" aria-label="WhatsApp Us">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- UPI Payment Modal -->
+    <div class="modal fade" id="upiPaymentModal" tabindex="-1" aria-labelledby="upiPaymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content card-bg-dark text-center">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title w-100 text-center text-white" id="upiPaymentModalLabel">Donate to Nigam Group Youth Association</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pb-4">
+                    <p class="lead mb-4 text-light">Scan to Donate or Pay with UPI App</p>
+                    <img id="upi-qr-code" src="qr.jpg" alt="UPI QR Code" class="img-fluid rounded mb-3" style="max-width: 250px;">
+                    <div class="input-group mb-3 justify-content-center">
+                        <span class="input-group-text bg-gray-700 text-light border-secondary">UPI ID:</span>
+                        <input type="text" class="form-control bg-gray-700 text-light border-secondary text-center" id="upi-id-display" value="gopud451@axl" readonly>
+                        <button class="btn btn-primary-custom" type="button" id="copyUpiId">Copy</button>
+                    </div>
+                    <a href="upi://pay?pa=YOUR_UPI_ID@bank&pn=Nigam%20Group%20Youth%20Association&mc=8000&tid=&tr=&tn=Donation&am=&cu=INR" class="btn btn-primary-custom w-75 mb-3" id="payWithUpiApp">
+                        Pay with UPI App <i class="fas fa-mobile-alt ms-2"></i>
+                    </a>
+                    <p class="small text-muted mb-0">
+                        (Ensure you have a UPI app installed on your device)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JavaScript Bundle (Popper included) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Custom JavaScript for Current Year and Form Submission -->
+    <!-- Custom JavaScript for Current Year, Form Submission, and UPI Modal -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Set Current Year in Footer
@@ -774,6 +805,11 @@
 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
+                    // Special handling for the Donate link in the navbar
+                    if (link.getAttribute('data-bs-target') === '#upiPaymentModal') {
+                        // This link does not correspond to a scrollable section, so no active state based on scroll
+                        return;
+                    }
                     // Check if the link's href matches the current section ID
                     if (link.getAttribute('href') && link.getAttribute('href').includes(currentSectionId)) {
                         link.classList.add('active');
@@ -784,6 +820,38 @@
             // Call on scroll and on load
             window.addEventListener('scroll', updateActiveNavLink);
             updateActiveNavLink(); // Call once on load to set initial active state
+
+            // UPI Modal Specific Logic
+            const upiIdDisplay = document.getElementById('upi-id-display');
+            const copyUpiIdButton = document.getElementById('copyUpiId');
+            const payWithUpiAppButton = document.getElementById('payWithUpiApp');
+
+            // Set the UPI ID dynamically in the "Pay with UPI App" button's href
+            const upiId = upiIdDisplay.value;
+            payWithUpiAppButton.href = `upi://pay?pa=${upiId}&pn=Nigam%20Group%20Youth%20Association&mc=8000&tid=&tr=&tn=Donation&am=&cu=INR`;
+
+
+            if (copyUpiIdButton) {
+                copyUpiIdButton.addEventListener('click', () => {
+                    // Use document.execCommand('copy') for better compatibility in iframes
+                    const textArea = document.createElement('textarea');
+                    textArea.value = upiIdDisplay.value;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        copyUpiIdButton.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyUpiIdButton.textContent = 'Copy';
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                        // Fallback for older browsers or if execCommand fails
+                        copyUpiIdButton.textContent = 'Error!';
+                    }
+                    document.body.removeChild(textArea);
+                });
+            }
         });
     </script>
 </body>
